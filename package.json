@@ -28,9 +28,10 @@
   },
   "homepage": "https://github.com/ArnauldAnguh/Restau-apis#readme",
   "dependencies": {
+    "body-parser": "*",
     "express": "^4.17.1",
-    "pg": "*",
-    "body-parser": "*"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
