@@ -30,6 +30,8 @@
   "dependencies": {
     "body-parser": "*",
     "express": "^4.17.1",
+    "dotenv": "^8.0.0",
+    "express-promise-router": "^3.0.3",
     "jsonwebtoken": "^8.5.1",
     "pg": "*"
   },
