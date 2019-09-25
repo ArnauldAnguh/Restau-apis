@@ -1,16 +1,25 @@
 import { Pool } from "pg";
-require("dotenv").config();
-const isProduction = process.env.NODE_ENV === "production";
+import "babel-polyfill";
+import { config } from "dotenv";
 
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
-
+config();
+let connectionString;
+if (process.env.NODE_ENV === "test") {
+  connectionString = process.env.TEST_DB_URL;
+} else {
+  connectionString = process.env.DEV_DB_URL;
+}
 const pool = new Pool({
-  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: isProduction
+  connectionString
 });
 
-module.exports = {
-  query: (text, params, callback) => {
-    return pool.query(text, params, callback);
+export default {
+  async query(text, params) {
+    try {
+      const result = await pool.query(text, params);
+      return result;
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 };
