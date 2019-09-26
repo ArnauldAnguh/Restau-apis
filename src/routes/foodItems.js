@@ -7,8 +7,13 @@ router.get("/", (req, res, next) => {
   });
 });
 router.post("/", (req, res, next) => {
+  const itemData = {
+    name: req.body.name,
+    price: req.body.price
+  };
   res.status(200).json({
-    message: "Handeling POST requests to /foodItems"
+    message: "Handeling POST requests to /foodItems",
+    itemData
   });
 });
 router.get("/:foodItemId", (req, res, next) => {
