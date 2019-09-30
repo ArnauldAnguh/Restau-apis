@@ -1,40 +1,12 @@
 import express from "express";
 const router = express.Router();
+import FoodItems from "../controllers/foodItems";
 
-router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Handeling GET requests to /foodItems"
-  });
-});
-router.post("/", (req, res, next) => {
-  const itemData = {
-    name: req.body.name,
-    price: req.body.price
-  };
-  res.status(200).json({
-    message: "Handeling POST requests to /foodItems",
-    itemData
-  });
-});
-router.get("/:foodItemId", (req, res, next) => {
-  const id = req.params.foodItemId;
-  if (id === "special") {
-    res.status(200).json({
-      message: `You are the ${id} id`,
-      id
-    });
-  } else {
-    res.sendStatus(404);
-  }
-});
-router.patch("/:foodItemId", (req, res, next) => {
-  res.status(200).json({
-    message: `well its ok, updated`
-  });
-});
-router.delete("/:foodItemId", (req, res, next) => {
-  res.status(200).json({
-    message: `well its ok, DELETED ${req.params.foodItemId}`
-  });
-});
+// endpoints and Controllers
+router.get("/", FoodItems.getAllFoodItems);
+router.post("/", FoodItems.createFoodItem);
+router.get("/:foodItemId", FoodItems.getFoodItemById);
+router.post("/search", FoodItems.search);
+router.patch("/:foodItemId", FoodItems.updateFoodItem);
+router.delete("/:foodItemId", FoodItems.deleteFoodItem);
 export default router;
