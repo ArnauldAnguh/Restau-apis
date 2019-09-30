@@ -1,28 +1,11 @@
 import express from "express";
+import orders from "../controllers/orders";
+
 const router = express.Router();
 
-// Handles incoming Get requests from /orders
-router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Orders where Fetched"
-  });
-});
-
-router.post("/", (req, res, next) => {
-  const itemOrder = {
-    itemId: req.body.itemId,
-    quantity: req.body.quantity
-  };
-  res.status(200).json({
-    message: "Order was Created",
-    itemOrder
-  });
-});
-
-router.delete("/:orderId", (req, res, next) => {
-  res.status(200).json({
-    message: "Order delete",
-    orderId: req.params.orderId
-  });
-});
+router.get("/", orders.fetchAllOrders);
+router.get("/:order_id", orders.fetchOrderById);
+router.post("/", orders.placeOrder);
+router.put("/:order_id", orders.updateOrder);
+router.delete("/:order_id", orders.deleteOrder);
 export default router;
