@@ -11,6 +11,9 @@ export default class FoodItem {
       : 0;
     this.quantity = foodItem.quantity ? foodItem.quantity : 0;
     this.price = foodItem.price ? foodItem.price : 0;
+    this.image = foodItem.image
+      ? foodItem.image.toString()
+      : "https://via.placeholder.com/150/000000/FFFFFF/?text=Food Item";
     if (foodItem.created_at) {
       this.created_at = foodItem.created_at;
     }
@@ -20,11 +23,17 @@ export default class FoodItem {
   }
 
   async save() {
-    const params = [this.name, this.description, this.quantity, this.price];
+    const params = [
+      this.name,
+      this.description,
+      this.quantity,
+      this.price,
+      this.image
+    ];
     try {
       const { rows } = await db.query(
-        `INSERT INTO food_items (name, description, quantity, price)
-      VALUES ($1, $2, $3, $4) RETURNING *`,
+        `INSERT INTO food_items (name, description, quantity, price, item_image)
+      VALUES ($1, $2, $3, $4, $5) RETURNING *`,
         params
       );
       const foodItemData = new FoodItem(rows[0]);

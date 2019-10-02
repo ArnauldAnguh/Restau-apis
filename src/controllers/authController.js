@@ -12,7 +12,7 @@ function createToken(user) {
     },
     process.env.JWT_KEY,
     {
-      expiresIn: "1h"
+      expiresIn: "10h"
     }
   );
 
