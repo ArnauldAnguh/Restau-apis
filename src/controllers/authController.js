@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import User from "../models/User";
 
 function createToken(user) {
@@ -17,7 +18,6 @@ function createToken(user) {
 export default {
   async login(req, res) {
     const { email, password } = req.body;
-
     let user;
     try {
       const rows = await User.find({ email });
@@ -30,23 +30,23 @@ export default {
       return res.status(400).json({ errors: "Wrong user credentials" });
     }
     if (user) {
-      if (password !== user.password) {
-        return res.status(404).json({ msg: "Wrong User Password" });
+      if (bcrypt.compareSync(password, user.password)) {
+        const token = createToken(user);
+        return res
+          .status(200)
+          .send({ data: { token, user }, message: "Sign in successful" });
       }
-      const token = createToken(user);
-      return res
-        .status(200)
-        .send({ data: { token, user }, message: "Sign in successful" });
     }
-    return res.status(400).json({ errors: "Wrong credentials" });
+    return res.status(400).json({ errors: "Auth Failed!" });
   },
 
   async signUp(req, res) {
     const user = new User(req.body);
-    user.role = "user";
+    user.password = bcrypt.hashSync(req.body.password, 10);
     let newUser;
     try {
       newUser = await user.save();
+      console.log("NEW USER:", newUser);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -99,6 +99,7 @@ export default {
 
   async registerAdminUser(req, res) {
     const user = new User(req.body);
+    user.password = bcrypt.hashSync(req.body.password, 10);
     user.role = "admin";
     let newUser;
     try {

@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/ArnauldAnguh/Restau-apis#readme",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "*",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
