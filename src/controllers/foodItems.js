@@ -1,14 +1,13 @@
 import FoodItem from "../models/foodItems";
 
 export default {
-  async getAllFoodItems(req, res) {
+  async getAllItems(req, res) {
     const allFoodItems = await FoodItem.find({});
     return res.status(200).send({ data: allFoodItems, message: "success" });
   },
 
-  async getFoodItemById(req, res) {
+  async getItemById(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
-    console.log(req.params);
     if (!foodItem_id || Number.isNaN(foodItem_id)) {
       return res
         .status(400)
@@ -25,7 +24,7 @@ export default {
     });
   },
 
-  async createFoodItem(req, res) {
+  async createItem(req, res) {
     const foodItem = new FoodItem(req.body);
     const newFoodItem = await foodItem.save();
     return res
@@ -33,7 +32,7 @@ export default {
       .send({ data: newFoodItem, message: "Food item created successfully" });
   },
 
-  async updateFoodItem(req, res) {
+  async updateItem(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
     console.log(req.body);
     const removedFoodItem = await FoodItem.findById(foodItem_id);
@@ -50,7 +49,7 @@ export default {
       .json({ data: updatedFoodItem, message: "Item updated successfully" });
   },
 
-  async deleteFoodItem(req, res) {
+  async deleteItem(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
     const foodItem = await FoodItem.findById(foodItem_id);
     await FoodItem.delete(foodItem_id);
@@ -59,7 +58,6 @@ export default {
 
   async search(req, res) {
     const { item } = req.body;
-    console.log(item);
     if (!item || item.length < 3) {
       return res
         .status(400)

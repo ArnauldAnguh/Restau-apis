@@ -12,6 +12,7 @@ import orderRoutes from "./routes/orders";
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 //CORS Error Handling
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -30,6 +31,11 @@ app.use((req, res, next) => {
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/foodItems", foodItemsRoutes);
+app.get("*", (req, res) => {
+  res
+    .status(403)
+    .json({ msg: "Invalid API endpoint, please visit '/api/v1/index' " });
+});
 
 //Error Listening middleware
 app.use((req, res, next) => {

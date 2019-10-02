@@ -7,9 +7,13 @@ function createToken(user) {
     {
       id: user.id,
       role: user.role,
-      name: user.name
+      name: user.name,
+      email: user.email
     },
-    "my_secret_key"
+    process.env.JWT_KEY,
+    {
+      expiresIn: "1h"
+    }
   );
 
   return token;
