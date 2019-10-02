@@ -1,5 +1,5 @@
 import FoodItem from "../models/foodItems";
-
+import fs from "fs";
 export default {
   async getAllItems(req, res) {
     const allFoodItems = await FoodItem.find({});
@@ -8,6 +8,7 @@ export default {
 
   async getItemById(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
+
     if (!foodItem_id || Number.isNaN(foodItem_id)) {
       return res
         .status(400)
@@ -26,6 +27,7 @@ export default {
 
   async createItem(req, res) {
     const foodItem = new FoodItem(req.body);
+    foodItem.image = req.file.filename;
     const newFoodItem = await foodItem.save();
     return res
       .status(201)
@@ -34,12 +36,13 @@ export default {
 
   async updateItem(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
-    console.log(req.body);
+
     const removedFoodItem = await FoodItem.findById(foodItem_id);
     if (!removedFoodItem) {
       return res.status(404).send({ message: "Food item not found" });
     }
     removedFoodItem.name = req.body.name;
+    previousFoodItem.image = req.body.image;
     removedFoodItem.description = req.body.description;
     removedFoodItem.quantity = req.body.quantity;
     removedFoodItem.price = req.body.price;
@@ -53,7 +56,13 @@ export default {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
     const foodItem = await FoodItem.findById(foodItem_id);
     await FoodItem.delete(foodItem_id);
-    return res.status(200).json({ message: "Item deleted successfully" });
+
+    fs.unlink(`../uploads/${foodItem.image}`, err => {
+      if (err) {
+        return res.send({ error: "There was a problem deleting file" });
+      }
+      return res.status(200).json({ message: "Item deleted successfully" });
+    });
   },
 
   async search(req, res) {
