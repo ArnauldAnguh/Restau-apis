@@ -49,7 +49,17 @@ router.post(
 );
 router.get("/:foodItemId", FoodItems.getItemById);
 router.get("/search/:searchKey", FoodItems.search);
-router.patch("/:foodItemId", checkAuth.admin, FoodItems.updateItem);
-router.delete("/:foodItemId", checkAuth.admin, FoodItems.deleteItem);
+router.patch(
+  "/:foodItemId",
+  checkAuth.user,
+  checkAuth.admin,
+  FoodItems.updateItem
+);
+router.delete(
+  "/:foodItemId",
+  checkAuth.user,
+  checkAuth.admin,
+  FoodItems.deleteItem
+);
 
 export default router;
