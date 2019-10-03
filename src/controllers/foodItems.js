@@ -29,6 +29,7 @@ export default {
     const foodItem = new FoodItem(req.body);
     foodItem.image = req.file.filename;
     const newFoodItem = await foodItem.save();
+    console.log("FoodItem", newFoodItem);
     return res
       .status(201)
       .send({ data: newFoodItem, message: "Food item created successfully" });
@@ -37,16 +38,16 @@ export default {
   async updateItem(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
 
-    const removedFoodItem = await FoodItem.findById(foodItem_id);
-    if (!removedFoodItem) {
+    const foundFoodItem = await FoodItem.findById(foodItem_id);
+    if (!foundFoodItem) {
       return res.status(404).send({ message: "Food item not found" });
     }
-    removedFoodItem.name = req.body.name;
-    previousFoodItem.image = req.body.image;
-    removedFoodItem.description = req.body.description;
-    removedFoodItem.quantity = req.body.quantity;
-    removedFoodItem.price = req.body.price;
-    const updatedFoodItem = await removedFoodItem.update();
+    foundFoodItem.name = req.body.name;
+    foundFoodItem.image = req.body.image;
+    foundFoodItem.description = req.body.description;
+    foundFoodItem.quantity = req.body.quantity;
+    foundFoodItem.price = req.body.price;
+    const updatedFoodItem = await foundFoodItem.update();
     return res
       .status(200)
       .json({ data: updatedFoodItem, message: "Item updated successfully" });
