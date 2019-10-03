@@ -9,7 +9,7 @@ export default class User {
       this.id = user.id;
     }
     this.role = user.role ? user.role : "user";
-    this.name = user.name ? user.name : null;
+    this.username = user.username ? user.username : null;
     this.email = user.email ? user.email : null;
     this.password = user.password ? user.password : null;
     if (user.created_at) {
@@ -20,7 +20,7 @@ export default class User {
     }
   }
 
-  async save() {
+  static async save() {
     const params = [this.role, this.name, this.email, this.password];
     const { rows } = await db.query(
       `INSERT INTO users (role, name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
@@ -31,7 +31,13 @@ export default class User {
   }
 
   async update() {
-    const params = [this.role, this.name, this.email, this.password, this.id];
+    const params = [
+      this.role,
+      this.username,
+      this.email,
+      this.password,
+      this.id
+    ];
     try {
       const { rows } = await db.query(
         `UPDATE users SET 
@@ -43,6 +49,7 @@ export default class User {
                     WHERE id=$5 RETURNING *`,
         params
       );
+      console.log("USER ROW", rows);
       const user = new User(rows[0]);
       return user;
     } catch (error) {
@@ -54,6 +61,15 @@ export default class User {
     let queryString = "SELECT * FROM users";
     try {
       const { rows } = await db.query(queryString);
+      return rows;
+    } catch (e) {
+      return e;
+    }
+  }
+  static async findByEmail(email) {
+    let queryString = "SELECT * FROM users WHERE email = $1 LIMIT 1";
+    try {
+      const { rows } = await db.query(queryString, [email]);
       return rows;
     } catch (e) {
       return e;
@@ -86,7 +102,7 @@ export default class User {
         "SELECT * FROM users WHERE id=$1 LIMIT 1",
         [userId]
       );
-      return rows.length ? new User(rows[0]) : false;
+      return rows[0];
     } catch (e) {
       return e;
     }

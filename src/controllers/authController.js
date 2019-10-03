@@ -24,7 +24,7 @@ export default {
     const { email, password } = req.body;
     let user;
     try {
-      const rows = await User.find({ email });
+      const rows = await User.findByEmail(email);
       [user] = rows;
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -50,7 +50,6 @@ export default {
     let newUser;
     try {
       newUser = await user.save();
-      console.log("NEW USER:", newUser);
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -118,40 +117,35 @@ export default {
 
   async updateUser(req, res) {
     const user_id = parseInt(req.params.userId, 10);
-    if (!user_id || Number.isNaN(user_id)) {
+    if (!Number.isInteger(user_id)) {
       return res.status(400).send({ errors: "A valid user Id is required" });
     }
-
     let user;
     try {
       user = await User.findById(user_id);
+      if (!user) {
+        return res.status(200).send({ errors: "User not found" });
+      }
+
+      user.username = req.body.username ? req.body.username : user.name;
+      user.email = req.body.email ? req.body.email : user.email;
+      user.role = req.body.role ? req.body.role : user.role;
+      user.password = req.body.password
+        ? bcrypt.hashSync(req.body.password, 10)
+        : user.password;
+      if (!bcrypt.compareSync(req.body.password, user.password)) {
+        return res.status(400).send({ errors: "Invalid Old Password" });
+      }
+      let updatedUser;
+      const userData = new User(user);
+      updatedUser = await userData.update();
+
+      return res
+        .status(200)
+        .json({ data: updatedUser, message: "User successfully updated" });
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
-
-    if (!user) {
-      return res.status(200).send({ msg: "User not found" });
-    }
-    // REMEMBER TO FIX THIS/(compare the logged in user id with the updating user id)
-    if (req.body.password !== user.password) {
-      return res.status(400).send({ errorsMsg: "passwords do not match" });
-    }
-
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.role = req.body.role ? req.body.role : "user";
-    user.password = req.body.password;
-
-    let updatedUser;
-    try {
-      updatedUser = await user.update();
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
-
-    return res
-      .status(200)
-      .json({ data: updatedUser, message: "User successfully updated" });
   },
 
   async deleteUser(req, res) {

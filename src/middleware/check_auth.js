@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
+import User from "../models/User";
 export default {
   async user(req, res, next) {
     try {
-      const token =
-        req.headers.authorization && req.headers.authorization.split(" ")[1];
+      const token = req.headers.authorization.split(" ")[1];
       if (!token) {
         return res
           .status(403)
@@ -18,7 +18,6 @@ export default {
   },
   async admin(req, res, next) {
     const { user } = req;
-    console.log("USER", user);
     if (user.role !== "admin") {
       return res.status(401).send({ error: "Unauthorized" });
     }

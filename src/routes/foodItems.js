@@ -40,7 +40,13 @@ const upload = multer({
 
 // endpoints and Controllers
 router.get("/", FoodItems.getAllItems);
-router.post("/", upload.single("image"), checkAuth.admin, FoodItems.createItem);
+router.post(
+  "/",
+  upload.single("image"),
+  checkAuth.user,
+  checkAuth.admin,
+  FoodItems.createItem
+);
 router.get("/:foodItemId", FoodItems.getItemById);
 router.get("/search/:searchKey", FoodItems.search);
 router.patch("/:foodItemId", checkAuth.admin, FoodItems.updateItem);
