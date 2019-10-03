@@ -1,5 +1,6 @@
 import FoodItem from "../models/foodItems";
 import fs from "fs";
+import request from "request";
 export default {
   async getAllItems(req, res) {
     const allFoodItems = await FoodItem.find({});
@@ -9,7 +10,7 @@ export default {
   async getItemById(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
 
-    if (!foodItem_id || Number.isNaN(foodItem_id)) {
+    if (!Number.isInteger(foodItem_id)) {
       return res
         .status(400)
         .send({ foodItem_id: "Enter a valid food Item Id" });
@@ -29,7 +30,7 @@ export default {
     const foodItem = new FoodItem(req.body);
     foodItem.image = req.file.filename;
     const newFoodItem = await foodItem.save();
-    console.log("FoodItem", newFoodItem);
+    // console.log("FoodItem", newFoodItem);
     return res
       .status(201)
       .send({ data: newFoodItem, message: "Food item created successfully" });
@@ -67,13 +68,19 @@ export default {
   },
 
   async search(req, res) {
-    const { item } = req.body;
+    const item = req.params.searchKey;
+    let query = req.query;
     if (!item || item.length < 3) {
       return res
         .status(400)
-        .json({ msg: "You Must provide morethan 3 words to search" });
+        .json({ msg: "You Must provide morethan 3 characters to search" });
     }
+    const url = "http://localhost:3000/api/v1/foodItems/" + query;
+
     const items = await FoodItem.search(item);
-    return res.status(200).json(items);
+    if (items === []) {
+      return res.status(403).json({ msg: "Searched Item Not Found!" });
+    }
+    return res.status(200).json({ results: "search results", items });
   }
 };

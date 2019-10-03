@@ -82,7 +82,6 @@ export default class FoodItem {
         params.push(query[key]);
         return key;
       });
-
       queryString = `SELECT * FROM food_items WHERE ${paramsString}`;
     } else {
       queryString = "SELECT * FROM food_items";
@@ -109,12 +108,11 @@ export default class FoodItem {
   }
 
   static async search(searchKey) {
-    console.log(searchKey);
     try {
       const { rows } = await db.query(
         `SELECT * FROM food_items WHERE name LIKE '%${searchKey}%' OR description LIKE '%${searchKey}%'`
       );
-      return rows.length ? rows : [];
+      return rows ? rows[0] : [];
     } catch (e) {
       return e;
     }
