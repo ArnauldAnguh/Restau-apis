@@ -45,7 +45,7 @@ export default {
   },
 
   async signUp(req, res) {
-    const user = new User(req.body);
+    let user = new User(req.body);
     user.password = bcrypt.hashSync(req.body.password, 10);
     let newUser;
     try {

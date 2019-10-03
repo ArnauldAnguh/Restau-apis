@@ -47,8 +47,8 @@ router.post(
   checkAuth.admin,
   FoodItems.createItem
 );
+router.post("/:searchKey", FoodItems.search);
 router.get("/:foodItemId", FoodItems.getItemById);
-router.get("/search/:searchKey", FoodItems.search);
 router.patch(
   "/:foodItemId",
   checkAuth.user,
