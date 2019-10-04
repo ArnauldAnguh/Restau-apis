@@ -7,7 +7,7 @@ router.get("/", users.getAllUsers);
 router.get("/admin", checkAuth.admin, checkAuth.admin, users.getAllAdmins);
 router.post("/admin", checkAuth.admin, users.registerAdminUser);
 router.post("/login", users.login);
-
+router.post("/logout", checkAuth.user, users.signOut);
 router.get("/history/:user_id", checkAuth.user, users.userOrderHistory);
 router.post("/signup", users.signUp);
 router.get("/:userId", users.getUserById);
