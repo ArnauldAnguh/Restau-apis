@@ -6,7 +6,9 @@ const router = express.Router();
 router.get("/", users.getAllUsers);
 router.get("/admin", checkAuth.admin, checkAuth.admin, users.getAllAdmins);
 router.post("/admin", checkAuth.admin, users.registerAdminUser);
-router.post("/login", checkAuth.user, users.login);
+router.post("/login", users.login);
+
+router.get("/history/:user_id", checkAuth.user, users.userOrderHistory);
 router.post("/signup", users.signUp);
 router.get("/:userId", users.getUserById);
 router.put("/:userId", checkAuth.user, users.updateUser);

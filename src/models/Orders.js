@@ -6,8 +6,11 @@ export default class Orders {
       this.id = order.id;
     }
     this.customer_id = order.customer_id ? order.customer_id : null;
-    this.total_price = order.total_price ? order.total_price : 0;
+    this.itemName = order.fooditem ? order.fooditem : null;
     this.status = order.status ? order.status : null;
+    this.total_price = order.total_price ? order.total_price : 0;
+    this.order_id = order.id ? order.id : 0;
+    this.quantity = order.quantity ? order.quantity : 0;
     if (order.created_at) {
       this.created_at = order.created_at;
     }
@@ -17,10 +20,10 @@ export default class Orders {
   }
 
   async save() {
-    const params = [this.customer_id, this.total_price];
+    const params = [this.customer_id, this.total_price, this.itemName];
     try {
       const { rows } = await db.query(
-        `INSERT INTO orders(customer_id, total_price) VALUES($1, $2) RETURNING *`,
+        `INSERT INTO orders(customer_id,total_price,fooditem) VALUES ($1,$2,$3) RETURNING *`,
         params
       );
       const newOrder = new Orders(rows[0]);
@@ -30,19 +33,17 @@ export default class Orders {
     }
   }
 
-  async saveOrderItems(items) {
-    let data = "";
-    items.forEach((item, index) => {
-      console.log("Items:", item);
-      if (index === 0) {
-        data = `(${this.id}, ${item.item_id}, ${item.quantity}, ${item.unit_price})`;
-      } else {
-        data = `${data}, (${this.id}, ${item.item_id}, ${item.quantity}, ${item.unit_price})`;
-      }
-    });
-    const text = `INSERT INTO order_items(order_id, item_id, quantity, total_price) VALUES ${data}`;
+  async saveOrderItems() {
+    const params = [
+      this.order_id,
+      this.itemName,
+      this.total_price,
+      this.quantity
+    ];
+    const text = `INSERT INTO order_items(order_id,item,total_price,quantity) VALUES($1,$2,$3,$4) RETURNING *`;
     try {
-      const { rows } = await db.query(text);
+      const { rows } = await db.query(text, params);
+      return new Orders(rows[0]);
     } catch (e) {
       return e;
     }
@@ -68,12 +69,41 @@ export default class Orders {
     }
   }
 
+  static async getOrderHistory(userId) {
+    const text = `SELECT o.*, o_i.*, i.name, i.item_image
+                      FROM orders o LEFT JOIN order_items o_i ON o.id=o_i.order_id
+                      LEFT JOIN food_items i ON i.name=o_i.item WHERE o.customer_id=$1`;
+    try {
+      const { rows } = await db.query(text, [userId]);
+
+      return rows.length ? rows : [];
+    } catch (error) {
+      return new Error(error);
+    }
+  }
+
   static async find(query) {
     let paramsString = "";
     let queryString = "";
     const params = [];
-    queryString = `SELECT * FROM orders`;
 
+    if (Object.keys(query).length > 0) {
+      Object.keys(query).map((key, index) => {
+        index += 1;
+        const extendQuery = index === 1 ? "" : " AND";
+        paramsString += `${extendQuery} ${key}=$${index}`;
+        params.push(query[key]);
+        return key;
+      });
+
+      queryString = `SELECT o.*, o_i.*, i.name, i.image, u.username, u.email
+                      FROM orders o 
+                    LEFT JOIN order_items o_i ON o.id=o_i.order_id
+                    LEFT JOIN food_items i ON i.id=o_i.item_id 
+                    LEFT JOIN users u ON u.id=o.customer_id WHERE ${paramsString}`;
+    } else {
+      queryString = `SELECT * FROM orders`;
+    }
     try {
       const { rows } = await db.query(queryString, params);
       return rows;
