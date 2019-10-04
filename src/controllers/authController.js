@@ -110,7 +110,6 @@ export default {
       } else if (req.user.id && req.user.role === "user") {
         user_id = parseInt(req.user.id, 10);
       }
-      // console.log("USER ID", user_id, req.user);
       if (!Number.isInteger(user_id)) {
         return res.status(400).send({ errors: "A valid user Id is required" });
       } else {
@@ -142,6 +141,16 @@ export default {
     return res
       .status(201)
       .json({ data: newUser, message: "Admin user created" });
+  },
+
+  async signOut(req, res) {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+      const results = await User.signOutToken(token);
+      res.status(200).json({ results, message: "Successfully signed Out!" });
+    } catch (e) {
+      return e;
+    }
   },
 
   async updateUser(req, res) {

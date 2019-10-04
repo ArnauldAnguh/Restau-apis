@@ -57,6 +57,17 @@ export default class User {
     }
   }
 
+  static async signOutToken(token) {
+    try {
+      const result = await db.query(
+        "INSERT INTO token_signed_out (token) VALUES ($1) RETURNING *",
+        [token]
+      );
+      return result.rows[0];
+    } catch (error) {
+      return error;
+    }
+  }
   static async find({}) {
     let queryString = "SELECT * FROM users";
     try {
