@@ -40,6 +40,7 @@ const upload = multer({
 
 // endpoints and Controllers
 router.get("/", FoodItems.getAllItems);
+router.get("/menu", FoodItems.getAllItems);
 router.post(
   "/",
   upload.single("image"),
