@@ -1,4 +1,5 @@
 import Order from "../models/Orders";
+import { Object } from "core-js";
 
 export default {
   async fetchAllOrders(req, res) {
@@ -10,7 +11,7 @@ export default {
     }
     return res
       .status(200)
-      .json({ data: orders, message: "successfully fetched orders " });
+      .json({ orders: orders, message: "successfully fetched orders " });
   },
 
   async fetchOrderById(req, res) {
@@ -22,20 +23,23 @@ export default {
     if (!order) {
       return res.status(200).send({ message: "Order not found" });
     }
-    res.status(200).json({ data: order, message: "Order Found" });
+    res.status(200).json({ order: order, message: "Order Found" });
   },
 
   async placeOrder(req, res) {
     let totalPrice = 0;
-    const body = req.body;
-    totalPrice = body.quantity * body.price;
+    totalPrice = req.body.quantity * req.body.price;
     const orderObj = {
-      customer_id: body.customer_id,
-      total_price: totalPrice
+      customer_id: req.user.id,
+      fooditem: req.body.item,
+      total_price: totalPrice,
+      quantity: req.body.quantity,
+      unit_price: req.body.price
     };
     const order = new Order(orderObj);
     const newOrder = await order.save();
-
+    newOrder.quantity = order.quantity;
+    const newHistory = await newOrder.saveOrderItems();
     return res
       .status(201)
       .json({ data: newOrder, message: "Order placed successfully" });
@@ -56,8 +60,10 @@ export default {
     const quantity = req.body.quantity;
     const price = req.body.unit_price;
     const total_price = quantity * price;
+    order.item = req.body.item;
     order.status = status;
     order.total_price = total_price;
+
     const placedOrder = new Order(order);
     const newOrder = await placedOrder.update();
     res.status(200).json({ data: newOrder, message: "Order status updated" });

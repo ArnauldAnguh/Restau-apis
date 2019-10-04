@@ -1,6 +1,6 @@
-import FoodItem from "../models/foodItems";
 import fs from "fs";
 import request from "request";
+import FoodItem from "../models/foodItems";
 export default {
   async getAllItems(req, res) {
     const allFoodItems = await FoodItem.find({});

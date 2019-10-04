@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "../models/User";
+import Order from "../models/Orders";
 
 function createToken(user) {
   const token = jwt.sign(
@@ -98,6 +99,34 @@ export default {
     }
 
     return res.status(200).json({ data: user, message: "success" });
+  },
+
+  async userOrderHistory(req, res) {
+    let user_id;
+    let user;
+    try {
+      if (req.user.id && req.user.role === "admin") {
+        user_id = parseInt(req.params.user_id, 10);
+      } else if (req.user.id && req.user.role === "user") {
+        user_id = parseInt(req.user.id, 10);
+      }
+      // console.log("USER ID", user_id, req.user);
+      if (!Number.isInteger(user_id)) {
+        return res.status(400).send({ errors: "A valid user Id is required" });
+      } else {
+        user = await User.findById(user_id);
+        if (req.user.id === user.id || req.user.role === "admin") {
+          let orders;
+          orders = await Order.getOrderHistory(user_id);
+          console.log("USER FOUND", orders);
+          return res.status(200).json({ OrderHistory: orders });
+        } else {
+          return res.status(403).send({ error: "Unauthorized!" });
+        }
+      }
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   },
 
   async registerAdminUser(req, res) {
