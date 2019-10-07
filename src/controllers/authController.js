@@ -8,7 +8,7 @@ function createToken(user) {
     {
       id: user.id,
       role: user.role,
-      name: user.name,
+      name: user.username,
       email: user.email
     },
     process.env.JWT_KEY,
@@ -46,18 +46,18 @@ export default {
   },
 
   async signUp(req, res) {
-    let user = new User(req.body);
-    user.password = bcrypt.hashSync(req.body.password, 10);
-    let newUser;
     try {
-      newUser = await user.save();
+      const user = new User(req.body);
+      user.password = bcrypt.hashSync(user.password, 10);
+      const newUser = await user.save();
+      const token = createToken(newUser);
+      return res.status(200).json({
+        data: { token, user: newUser },
+        message: "Signup successful!"
+      });
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
-    const token = createToken(newUser);
-    return res
-      .status(200)
-      .json({ data: { token, user: newUser }, message: "Signup successful!" });
   },
 
   async getAllUsers(req, res) {

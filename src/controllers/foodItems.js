@@ -1,5 +1,4 @@
 import fs from "fs";
-import request from "request";
 import FoodItem from "../models/foodItems";
 export default {
   async getAllItems(req, res) {
@@ -30,7 +29,6 @@ export default {
     const foodItem = new FoodItem(req.body);
     foodItem.image = req.file.filename;
     const newFoodItem = await foodItem.save();
-    // console.log("FoodItem", newFoodItem);
     return res
       .status(201)
       .send({ data: newFoodItem, message: "Food item created successfully" });
