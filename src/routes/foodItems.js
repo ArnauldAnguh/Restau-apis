@@ -3,6 +3,8 @@ const router = express.Router();
 import path from "path";
 import FoodItems from "../controllers/foodItems";
 import checkAuth from "../middleware/check_auth";
+import foodItemValidation from "../middleware/foodItemValidation";
+
 import multer from "multer";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -46,6 +48,7 @@ router.post(
   upload.single("image"),
   checkAuth.user,
   checkAuth.admin,
+  foodItemValidation.create,
   FoodItems.createItem
 );
 router.post("/:searchKey", FoodItems.search);
@@ -54,6 +57,7 @@ router.patch(
   "/:foodItemId",
   checkAuth.user,
   checkAuth.admin,
+  foodItemValidation.update,
   FoodItems.updateItem
 );
 router.delete(

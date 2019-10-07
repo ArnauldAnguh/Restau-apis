@@ -11,7 +11,7 @@ export default class FoodItem {
       : 0;
     this.quantity = foodItem.quantity ? foodItem.quantity : 0;
     this.price = foodItem.price ? foodItem.price : 0;
-    this.image = foodItem.image
+    this.item_image = foodItem.image
       ? foodItem.image.toString()
       : "https://via.placeholder.com/150/000000/FFFFFF/?text=Food Item";
     if (foodItem.created_at) {
@@ -28,7 +28,7 @@ export default class FoodItem {
       this.description,
       this.quantity,
       this.price,
-      this.image
+      this.item_image
     ];
     try {
       const { rows } = await db.query(

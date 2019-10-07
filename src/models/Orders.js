@@ -50,15 +50,22 @@ export default class Orders {
   }
 
   async update() {
-    const params = [this.customer_id, this.total_price, this.status, this.id];
+    const params = [
+      this.customer_id,
+      this.itemName,
+      this.total_price,
+      this.status,
+      this.id
+    ];
     try {
       const { rows } = await db.query(
         `UPDATE orders SET 
                           customer_id=$1,
-                          total_price=$2,
-                          status=$3,
+                          fooditem=$2,
+                          total_price=$3,
+                          status=$4,
                           updated_at=NOW() 
-                      WHERE id=$4 RETURNING *`,
+                      WHERE id=$5 RETURNING *`,
         params
       );
       const order = rows[0];
