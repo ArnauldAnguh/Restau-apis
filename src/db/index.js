@@ -1,5 +1,5 @@
 import { Pool } from "pg";
-import "babel-polyfill";
+import "core-js/shim";
 import { config } from "dotenv";
 
 config();
