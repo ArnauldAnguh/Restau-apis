@@ -23,7 +23,7 @@ export default class User {
   async save() {
     const params = [this.role, this.username, this.email, this.password];
     const { rows } = await db.query(
-      `INSERT INTO users (role, name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
+      `INSERT INTO users (role, username, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
       params
     );
     const newUser = new User(rows[0]);
@@ -42,7 +42,7 @@ export default class User {
       const { rows } = await db.query(
         `UPDATE users SET 
                             role=$1, 
-                            name=$2, 
+                            username=$2, 
                             email=$3, 
                             updated_at=NOW(), 
                             password=$4

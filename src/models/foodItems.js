@@ -11,7 +11,7 @@ export default class FoodItem {
       : 0;
     this.quantity = foodItem.quantity ? foodItem.quantity : 0;
     this.price = foodItem.price ? foodItem.price : 0;
-    this.item_image = foodItem.image
+    this.image = foodItem.image
       ? foodItem.image.toString()
       : "https://via.placeholder.com/150/000000/FFFFFF/?text=Food Item";
     if (foodItem.created_at) {
@@ -28,16 +28,16 @@ export default class FoodItem {
       this.description,
       this.quantity,
       this.price,
-      this.item_image
+      this.image
     ];
     try {
       const { rows } = await db.query(
-        `INSERT INTO food_items (name, description, quantity, price, item_image)
+        `INSERT INTO food_items (name, description, quantity, unit_price, image)
       VALUES ($1, $2, $3, $4, $5) RETURNING *`,
         params
       );
-      const foodItemData = new FoodItem(rows[0]);
-      return foodItemData;
+      console.log(rows);
+      return rows;
     } catch (e) {
       return e;
     }
@@ -57,7 +57,7 @@ export default class FoodItem {
                         name=$1,
                         description=$2,
                         quantity=$3,
-                        price=$4,
+                        unit_price=$4,
                         updated_at=NOW() 
                     WHERE id=$5`,
         params
@@ -112,7 +112,7 @@ export default class FoodItem {
       const { rows } = await db.query(
         `SELECT * FROM food_items WHERE name LIKE '%${searchKey}%' OR description LIKE '%${searchKey}%'`
       );
-      return rows ? rows[0] : [];
+      return rows;
     } catch (e) {
       return e;
     }

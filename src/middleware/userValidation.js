@@ -2,7 +2,7 @@ import User from "../models/User";
 import validator from "validator";
 
 function validateUser(user) {
-  const errors = {};
+  let errors = {};
 
   user.username = validator.trim(user.username);
   user.email = validator.trim(user.email);
@@ -70,11 +70,11 @@ export default {
         errors.email = "Email already exists";
       }
       if (Object.keys(errors).length > 0) {
-        return res.status(400).json({ errors });
+        return res.status(400).json({ error: errors });
       }
       next();
-    } catch (error) {
-      return res.status(500).send({ error: error.messsage });
+    } catch (e) {
+      return res.status(500).json({ error: e });
     }
   },
 

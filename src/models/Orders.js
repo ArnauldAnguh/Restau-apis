@@ -23,11 +23,10 @@ export default class Orders {
     const params = [this.customer_id, this.total_price, this.itemName];
     try {
       const { rows } = await db.query(
-        `INSERT INTO orders(customer_id,total_price,fooditem) VALUES ($1,$2,$3) RETURNING *`,
+        `INSERT INTO orders(customer_id, total_price, item) VALUES ($1, $2, $3) RETURNING *`,
         params
       );
-      const newOrder = new Orders(rows[0]);
-      return newOrder;
+      return rows;
     } catch (e) {
       return e;
     }
@@ -61,7 +60,7 @@ export default class Orders {
       const { rows } = await db.query(
         `UPDATE orders SET 
                           customer_id=$1,
-                          fooditem=$2,
+                          item=$2,
                           total_price=$3,
                           status=$4,
                           updated_at=NOW() 
