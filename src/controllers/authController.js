@@ -27,22 +27,21 @@ export default {
     try {
       const rows = await User.findByEmail(email);
       [user] = rows;
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
+      if (!user) {
+        return res.status(400).json({ errors: "Wrong user credentials" });
+      }
 
-    if (!user) {
-      return res.status(400).json({ errors: "Wrong user credentials" });
-    }
-    if (user) {
-      if (bcrypt.compareSync(password, user.password)) {
+      if (user) {
+        delete user.password;
         const token = createToken(user);
-        return res
+         return res
           .status(200)
           .send({ data: { token, user }, message: "Sign in successful" });
       }
+      return res.status(400).json({ errors: "Auth Failed!" });
+    } catch (error) {
+      return res.status(500).json({ error: error });
     }
-    return res.status(400).json({ errors: "Auth Failed!" });
   },
 
   async signUp(req, res) {
@@ -53,10 +52,10 @@ export default {
       const token = createToken(newUser);
       return res.status(200).json({
         data: { token, user: newUser },
-        message: "Signup successful!"
+        message: "Signup Successfull!"
       });
     } catch (error) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error: error });
     }
   },
 

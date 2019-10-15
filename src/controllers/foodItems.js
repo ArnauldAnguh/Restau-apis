@@ -71,14 +71,13 @@ export default {
     if (!item || item.length < 3) {
       return res
         .status(400)
-        .json({ msg: "You Must provide morethan 3 characters to search" });
+        .json({ msg: "You Must provide atleast 3 characters to search" });
     }
-    const url = "http://localhost:3000/api/v1/foodItems/" + query;
-
-    const items = await FoodItem.search(item);
-    if (items === []) {
+    const found = await FoodItem.search(item);
+    if (found === []) {
       return res.status(403).json({ msg: "Searched Item Not Found!" });
+    } else {
+      return res.status(200).json({ results: "search results", item: found });
     }
-    return res.status(200).json({ results: "search results", items });
   }
 };

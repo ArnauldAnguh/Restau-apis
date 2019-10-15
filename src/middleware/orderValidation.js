@@ -11,9 +11,9 @@ function validate(order) {
     errors.quantity = "Quantity is required and must be a Number";
   }
 
-  if (!order.status || validator.isEmpty(order.status)) {
-    errors.status = "Order status required";
-  }
+  // if (!order.status || validator.isEmpty(order.status)) {
+  //   errors.status = "Order status required";
+  // }
 
   return errors;
 }
