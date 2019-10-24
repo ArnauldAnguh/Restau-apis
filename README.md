@@ -1,6 +1,8 @@
 # Restau-apis
 Restau-api is a food delivery service application for a restaurant where logged in customers can place orders for Food items, see history of orders made and can cancel an order at anytime(only if the order is still pending).
 
+[![Coverage Status](https://coveralls.io/repos/github/ArnauldAnguh/Restau-apis/badge.svg?branch=develop)](https://coveralls.io/github/ArnauldAnguh/Restau-apis?branch=develop)
+
 # API
 **Required features**
   1. Users can create an account and log in
