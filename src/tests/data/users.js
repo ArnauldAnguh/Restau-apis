@@ -6,7 +6,7 @@ config();
 export const firstUser = {
   id: 1,
   role: "admin",
-  username: "JohnFirst",
+  username: "johnfirst",
   email: "john.first@example.com",
   password: "john123",
   passwordConf: "john123"
@@ -15,7 +15,7 @@ export const firstUser = {
 export const secondUser = {
   id: 2,
   role: "user",
-  username: "SmithSecond",
+  username: "smithsecond",
   email: "smith.second@example.com",
   password: "smith123",
   passwordConf: "smith123"
@@ -23,7 +23,7 @@ export const secondUser = {
 
 export const thirdUser = {
   id: 3,
-  username: "JaneThird",
+  username: "janethird",
   email: "jane.third@example.com",
   password: "jane123",
   passwordConf: "jane123"
@@ -31,18 +31,21 @@ export const thirdUser = {
 
 export const fourthUser = {
   id: 4,
-  username: "Bob",
+  role: "admin",
+  username: "bob",
   email: "Bob.user@example.com",
   password: "bob1234",
   passwordConf: "bob1234"
 };
 
 export const correctCredentials = {
-  email: "john.first@example.com",
-  password: "john123"
+  username: "janethird",
+  email: "jane.third@example.com",
+  password: "jane123"
 };
 
 export const wrongCredentials = {
+  username: "janethird",
   email: "wrong.email@example.com",
   password: "john123"
 };
@@ -69,8 +72,8 @@ export const failConfPassUser = {
 export const invalidUser = {
   username: "Snowball",
   email: "test",
-  password: "mypass1",
-  passwordConf: "mypass1"
+  password: "mypax",
+  passwordConf: "mypasd"
 };
 
 export const created_at = "10-09-2019";
@@ -91,7 +94,7 @@ function createUserToken(user) {
       username: user.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30
     },
-    process.env.JWT_SECRET
+    process.env.JWT_KEY
   );
 
   return token;
@@ -105,7 +108,7 @@ function createAdminToken(user) {
       username: user.name,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30
     },
-    process.env.JWT_SECRET
+    process.env.JWT_KEY
   );
 
   return token;
@@ -114,4 +117,4 @@ function createAdminToken(user) {
 export const userToken = createUserToken(secondUser);
 export const adminToken = createAdminToken(firstUser);
 export const inValidToken =
-  "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNTQxMjUxOTM1LCJpYXQiOjE1Mzg2NTk5MzV9.MVOHv_qFPuS9lbt4gxK4t5DU6j71vGdAloo85TAHNj4";
+  "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNTQxMjUxOTM1LCJpYXQiOjE1Mzg2NTk5MzV9.MVOHv_qFPuS9lbt4gxK4t5DU6j71vGdAloo85T";

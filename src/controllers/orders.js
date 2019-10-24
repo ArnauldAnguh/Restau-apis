@@ -6,46 +6,44 @@ export default {
     if (!orders.length) {
       return res
         .status(200)
-        .send({ data: [], message: "No orders placed yet" });
+        .json({ data: [], message: "No orders placed yet" });
     }
     return res
       .status(200)
-      .json({ orders: orders, message: "successfully fetched orders " });
+      .json({ orders: orders, message: "successfully fetched orders" });
   },
 
   async fetchOrderById(req, res) {
     const order_id = parseInt(req.params.order_id);
     if (!order_id || isNaN(order_id)) {
-      return res.status(400).send({ order_id: "A valid order Id is required" });
+      return res.status(400).json({ order_id: "A valid order Id is required" });
     }
     const order = await Order.findById(order_id);
     if (!order) {
-      return res.status(200).send({ message: "Order not found" });
+      return res.status(200).json({ message: "Order not found" });
     }
     res.status(200).json({ order: order, message: "Order Found" });
   },
 
   async placeOrder(req, res) {
+    let totalPrice = 0;
     try {
-      let totalPrice = 0;
       totalPrice = req.body.quantity * req.body.unit_price;
-      const orderObj = {
+      const order = new Order({
         customer_id: req.user.id,
-        fooditem: req.body.fooditem,
         total_price: totalPrice,
-        quantity: req.body.quantity,
-        unit_price: req.body.unit_price
-      };
-      const order = new Order(orderObj);
-      console.log(order);
+        fooditem: req.body.fooditem
+      });
       const newOrder = await order.save();
-      // newOrder.quantity = order.quantity;
-      // const newHistory = await newOrder.saveOrderItems();
+      // order.order_id = newOrder.id;
+      // order.quantity = req.body.quantity;
+      // order.unit_price = req.body.unit_price;
+      // let hist = await order.saveOrderItems();
       return res
         .status(201)
         .json({ data: newOrder, message: "Order placed successfully" });
     } catch (err) {
-      return res.status(500).json(err.message);
+      return res.status(400).json(err.message);
     }
   },
 
@@ -53,24 +51,27 @@ export default {
   async updateOrder(req, res) {
     const order_id = parseInt(req.params.order_id, 10);
     const { status } = req.body;
-
-    if (!order_id || Number.isNaN(order_id)) {
-      return res.status(400).send({ error: "A valid order Id is required" });
+    try {
+      if (!order_id || Number.isNaN(order_id)) {
+        return res.status(400).json({ error: "A valid order Id is required" });
+      }
+      const order = await Order.findById(order_id);
+      if (!order) {
+        return res.status(200).json({ msg: "Order not found" });
+      }
+      const quantity = req.body.quantity;
+      const price = req.body.unit_price;
+      if (quantity && price) {
+        order.total_price = quantity * price;
+      }
+      order.fooditem = req.body.fooditem;
+      order.status = status;
+      const placedOrder = new Order(order);
+      const newOrder = await placedOrder.update();
+      res.status(200).json({ data: newOrder, success: "Order status updated" });
+    } catch (err) {
+      return res.status(500).json(err);
     }
-    const order = await Order.findById(order_id);
-    if (!order) {
-      return res.status(200).send({ msg: "Order not found" });
-    }
-    const quantity = req.body.quantity;
-    const price = req.body.unit_price;
-
-    order.fooditem = req.body.fooditem;
-    order.status = status;
-    order.total_price = quantity * price;
-    console.log(order)
-    const placedOrder = new Order(order);
-    const newOrder = await placedOrder.update();
-    res.status(200).json({ data: newOrder, success: "Order status updated" });
   },
 
   async deleteOrder(req, res) {

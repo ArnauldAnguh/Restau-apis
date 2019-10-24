@@ -8,7 +8,7 @@ import foodItemValidation from "../middleware/foodItemValidation";
 import multer from "multer";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "src/uploads/");
+    cb(null, "src/uploads");
   },
   filename: (req, file, cb) => {
     cb(
@@ -42,9 +42,9 @@ const upload = multer({
 
 // endpoints and Controllers
 router.get("/", FoodItems.getAllItems);
-router.get("/menu", FoodItems.getAllItems);
+router.get("/menu", checkAuth.user, FoodItems.getAllItems);
 router.post(
-  "/",
+  "/menu",
   upload.single("image"),
   checkAuth.user,
   checkAuth.admin,
@@ -52,16 +52,16 @@ router.post(
   FoodItems.createItem
 );
 router.post("/:searchKey", FoodItems.search);
-router.get("/:foodItemId", FoodItems.getItemById);
-router.patch(
-  "/:foodItemId",
+router.get("/menu/:foodItemId", FoodItems.getItemById);
+router.put(
+  "/menu/:foodItemId",
   checkAuth.user,
   checkAuth.admin,
   foodItemValidation.update,
   FoodItems.updateItem
 );
 router.delete(
-  "/:foodItemId",
+  "/menu/:foodItemId",
   checkAuth.user,
   checkAuth.admin,
   FoodItems.deleteItem

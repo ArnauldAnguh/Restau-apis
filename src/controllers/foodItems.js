@@ -3,7 +3,7 @@ import FoodItem from "../models/foodItems";
 export default {
   async getAllItems(req, res) {
     const allFoodItems = await FoodItem.find({});
-    return res.status(200).send({ data: allFoodItems, message: "success" });
+    return res.status(200).json({ data: allFoodItems, message: "success" });
   },
 
   async getItemById(req, res) {
@@ -12,14 +12,14 @@ export default {
     if (!Number.isInteger(foodItem_id)) {
       return res
         .status(400)
-        .send({ foodItem_id: "Enter a valid food Item Id" });
+        .json({ foodItem_id: "Enter a valid food Item Id" });
     }
 
     const foodItem = await FoodItem.findById(foodItem_id);
     if (!foodItem) {
-      return res.status(200).send({ Result: "Food item not found" });
+      return res.status(200).json({ Result: "Food item not found" });
     }
-    return res.status(200).send({
+    return res.status(200).json({
       data: foodItem,
       message: `success in fetching item ${foodItem.id}`
     });
@@ -27,42 +27,58 @@ export default {
 
   async createItem(req, res) {
     const foodItem = new FoodItem(req.body);
-    foodItem.image = req.file.filename;
-    const newFoodItem = await foodItem.save();
-    return res
-      .status(201)
-      .send({ data: newFoodItem, message: "Food item created successfully" });
+    try {
+      foodItem.image = req.file.filename;
+      if (!foodItem.image) {
+        return res.status(400).json({
+          error: "Food item image required"
+        });
+      }
+      const newFoodItem = await foodItem.save();
+      return res
+        .status(201)
+        .json({ data: newFoodItem, message: "Food item created successfully" });
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
+    }
   },
 
   async updateItem(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
-
-    const foundFoodItem = await FoodItem.findById(foodItem_id);
-    if (!foundFoodItem) {
-      return res.status(404).send({ message: "Food item not found" });
+    try {
+      const foundFoodItem = await FoodItem.findById(foodItem_id);
+      if (!foundFoodItem) {
+        return res.status(404).json({ error: "Food item not found" });
+      }
+      foundFoodItem.name = req.body.name;
+      foundFoodItem.image = req.body.image;
+      foundFoodItem.description = req.body.description;
+      foundFoodItem.quantity = req.body.quantity;
+      foundFoodItem.price = req.body.price;
+      const updatedFoodItem = await foundFoodItem.update();
+      return res
+        .status(200)
+        .json({ data: updatedFoodItem, message: "Item updated successfully" });
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
     }
-    foundFoodItem.name = req.body.name;
-    foundFoodItem.image = req.body.image;
-    foundFoodItem.description = req.body.description;
-    foundFoodItem.quantity = req.body.quantity;
-    foundFoodItem.price = req.body.price;
-    const updatedFoodItem = await foundFoodItem.update();
-    return res
-      .status(200)
-      .json({ data: updatedFoodItem, message: "Item updated successfully" });
   },
 
   async deleteItem(req, res) {
-    const foodItem_id = parseInt(req.params.foodItemId, 10);
-    const foodItem = await FoodItem.findById(foodItem_id);
-    await FoodItem.delete(foodItem_id);
-
-    fs.unlink(`../uploads/${foodItem.image}`, err => {
-      if (err) {
-        return res.send({ error: "There was a problem deleting file" });
-      }
-      return res.status(200).json({ message: "Item deleted successfully" });
-    });
+    try {
+      const foodItem_id = parseInt(req.params.foodItemId, 10);
+      const foodItem = await FoodItem.findById(foodItem_id);
+      await FoodItem.delete(foodItem_id);
+      console.log("FOOD ITEM", foodItem.image);
+      fs.unlink(`./src/uploads/${foodItem.image}`, err => {
+        if (err) {
+          res.status(400).json({ error: "There was an error deleting file" });
+        }
+        return res.status(204).json({ message: "Item deleted successfully" });
+      });
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
+    }
   },
 
   async search(req, res) {

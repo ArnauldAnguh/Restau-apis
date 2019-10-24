@@ -1,8 +1,10 @@
 import { Pool, Client } from "pg";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import db from "../index";
 import { firstUser } from "../../tests/data/users";
+import { firstOrder } from "../../tests/data/orders";
+import { firstItem } from "../../tests/data/foodItems";
 import { config } from "dotenv";
 
 config();
@@ -30,7 +32,7 @@ export const createToken = user => {
       username: user.username,
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30
     },
-    process.env.JWT_SECRET
+    process.env.JWT_KEY
   );
   return token;
 };
