@@ -22,12 +22,16 @@ export default class User {
 
   async save() {
     const params = [this.role, this.username, this.email, this.password];
-    const { rows } = await db.query(
-      `INSERT INTO users (role, username, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
-      params
-    );
-    const newUser = new User(rows[0]);
-    return newUser;
+    try {
+      const { rows } = await db.query(
+        `INSERT INTO users (role, username, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
+        params
+      );
+      const newUser = new User(rows[0]);
+      return newUser;
+    } catch (e) {
+      return res.status(500).json({ error: e });
+    }
   }
 
   async update() {
@@ -49,11 +53,10 @@ export default class User {
                     WHERE id=$5 RETURNING *`,
         params
       );
-      console.log("USER ROW", rows);
       const user = new User(rows[0]);
       return user;
     } catch (error) {
-      return error;
+      return res.status(500).json({ error: error });
     }
   }
 
@@ -114,8 +117,8 @@ export default class User {
         [userId]
       );
       return rows[0];
-    } catch (e) {
-      return e;
+    } catch (error) {
+      return error;
     }
   }
 

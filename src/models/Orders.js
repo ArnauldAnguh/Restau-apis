@@ -2,14 +2,14 @@ import db from "../db";
 
 export default class Orders {
   constructor(order) {
-    if (order && order.id) {
-      this.id = order.id;
+    if (order && order.order_id) {
+      this.id = order.order_id;
     }
     this.customer_id = order.customer_id ? order.customer_id : null;
     this.itemName = order.fooditem ? order.fooditem : null;
     this.status = order.status ? order.status : null;
     this.total_price = order.total_price ? order.total_price : 0;
-    this.order_id = order.id ? order.id : 0;
+    this.order_id = order.order_id ? order.order_id : 0;
     this.quantity = order.quantity ? order.quantity : 0;
     if (order.created_at) {
       this.created_at = order.created_at;
@@ -39,7 +39,7 @@ export default class Orders {
       this.total_price,
       this.quantity
     ];
-    const text = `INSERT INTO order_items(order_id,item,total_price,quantity) VALUES($1,$2,$3,$4) RETURNING *`;
+    const text = `INSERT INTO order_items(order_id,item,unit_price,quantity) VALUES($1,$2,$3,$4) RETURNING *`;
     try {
       const { rows } = await db.query(text, params);
       return new Orders(rows[0]);
@@ -68,7 +68,6 @@ export default class Orders {
         params
       );
       const order = rows[0];
-      console.log(order);
       return order;
     } catch (error) {
       return error;
@@ -81,7 +80,6 @@ export default class Orders {
                       LEFT JOIN food_items i ON i.name=o_i.item WHERE o.customer_id=$1`;
     try {
       const { rows } = await db.query(text, [userId]);
-
       return rows.length ? rows : [];
     } catch (error) {
       return new Error(error);

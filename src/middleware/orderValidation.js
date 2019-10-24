@@ -1,41 +1,47 @@
 import validator from "validator";
-
-function validate(order) {
-  const errors = {};
-
-  if (!order.fooditem) {
-    errors.item_id = "Item required";
-  }
-
-  if (!Number.isInteger(parseInt(order.quantity, 10))) {
-    errors.quantity = "Quantity is required and must be a Number";
-  }
-
-  // if (!order.status || validator.isEmpty(order.status)) {
-  //   errors.status = "Order status required";
-  // }
-
-  return errors;
-}
-
+const statusEnum = [
+  "COMPLETED",
+  "CANCELLED",
+  "PROCESSING",
+  "DECLINED",
+  "ACCEPTED",
+  "NEW"
+];
 export default {
   create(req, res, next) {
     const order = req.body;
-    const errors = validate(order);
+    if (!order.fooditem) {
+      return res.status(400).json({ errors: "Item required" });
+    }
 
-    if (Object.keys(errors).length !== 0) {
-      return res.status(400).json({ errors });
+    if (!Number.isInteger(parseInt(order.quantity, 10))) {
+      return res
+        .status(400)
+        .json({ errors: "Quantity is required and must be a Number" });
     }
     next();
   },
 
   update(req, res, next) {
     const order = req.body;
-    const errors = validate(order);
-
-    if (Object.keys(errors).length !== 0) {
-      return res.status(400).json({ errors });
+    if (order.status && !statusEnum.includes(order.status)) {
+      return res.status(400).json({
+        errors:
+          "Order status must be either, COMPLETED, CANCELLED, PROCESSING, DECLINED, ACCEPTED, NEW"
+      });
     }
+    if (order.fooditem && validator.isEmpty(order.fooditem)) {
+      return res.status(400).json({ errors: "Item required" });
+    }
+    if (!order.status || validator.isEmpty(order.status)) {
+      return res.status(400).json({ errors: "Order status required" });
+    }
+    if (order.quantity && !Number.isInteger(parseInt(order.quantity, 10))) {
+      return res
+        .status(400)
+        .json({ errors: "Quantity is required and must be a Number" });
+    }
+    console.log(order);
     next();
   }
 };
