@@ -2,6 +2,7 @@
 Restau-api is a food delivery service application for a restaurant where logged in customers can place orders for Food items, see history of orders made and can cancel an order at anytime(only if the order is still pending).
 
 [![Coverage Status](https://coveralls.io/repos/github/ArnauldAnguh/Restau-apis/badge.svg?branch=develop)](https://coveralls.io/github/ArnauldAnguh/Restau-apis?branch=develop)
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/arnauldanguh/default%2FMyBuildPipeline?key=eyJhbGciOiJIUzI1NiJ9.NWRiNWMwNjE2NWM5ZWEzNzJkMmRiMThk.SNzGmzovsYS_QW0RAOQPag3gAiUUy4vb0CiTtWZciJs&type=cf-1)]( https://g.codefresh.io/pipelines/MyBuildPipeline/builds?filter=trigger:build~Build;pipeline:5db5c3a414a6bd35adfa375a~MyBuildPipeline)
 
 # API
 **Required features**
