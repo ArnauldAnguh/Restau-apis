@@ -74,6 +74,24 @@ describe("User accounts", () => {
         });
     });
   });
+  describe("POST /users/admin/register - Create Admin user", () => {
+    it("should create an admin user", done => {
+      chai
+        .request(app)
+        .post("/api/v1/users/admin/register")
+        .set("authorization", `token ${adminToken}`)
+        .send(fourthUser)
+        .end((err, res) => {
+          if (err) return done(err);
+          console.log("ADMIN", res.body);
+          expect(res).to.have.status(201);
+          expect(res.body.data.email).to.be.equal(fourthUser.email);
+          expect(res.body.data.role).to.be.equal("admin");
+          expect(res.body.message).to.be.equal("Admin user created");
+          done();
+        });
+    });
+  });
   describe("POST /auth/login - User login", () => {
     it("should log user in and return a token", done => {
       chai
@@ -144,6 +162,7 @@ describe("User accounts", () => {
           done();
         });
     });
+
     it("should return an error message if ID is invalid", done => {
       chai
         .request(app)
@@ -169,21 +188,30 @@ describe("User accounts", () => {
         });
     });
   });
-
-  describe("POST /users - Create Admin user", () => {
-    it("should create an admin user", done => {
+  describe("GET /admin/:userid - get admins", () => {
+    it("should return an admin user given the admin id", done => {
       chai
         .request(app)
-        .post("/api/v1/users/admin/register")
+        .get(`/api/v1/users/admin/${firstUserId}`)
         .set("authorization", `token ${adminToken}`)
-        .send(firstUser)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          expect(res).to.have.status(200);
+          expect(res.body.message).to.be.equal("success");
+          done();
+        });
+    });
+    it("should return an error message if admin ID is invalid", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/users/admin/${invalidUserId}`)
+        .set("authorization", `token ${adminToken}`)
         .end((err, res) => {
           if (err) return done(err);
-          console.log("ADMIN", res.body);
-          expect(res).to.have.status(201);
-          expect(res.body.data.email).to.be.equal(fourthUser.email);
-          expect(res.body.data.role).to.be.equal("admin");
-          expect(res.body.message).to.be.equal("Admin user created");
+          expect(res).to.have.status(400);
+          expect(res.body.errors).to.be.equal("A valid user Id is required");
           done();
         });
     });

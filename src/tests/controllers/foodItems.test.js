@@ -105,12 +105,12 @@ describe("Food Items", () => {
           .request(app)
           .post("/api/v1/foodItems/menu")
           .set("authorization", `token ${userToken}`)
-          .send(secondItem)
+          .send({ ...secondItem })
           .end((err, res) => {
             console.log("UNAUTH USER", res.body);
             if (err) return done(err);
             expect(res).to.have.status(401);
-            expect(res.body.error).equal("Unauthorized");
+            expect(res.body).to.have.property("error");
             done();
           });
       });
@@ -169,7 +169,6 @@ describe("Food Items", () => {
             if (err) return done(err);
             console.log("REQ BODY NAME", res.body);
             expect(res).to.have.status(200);
-            expect(res.body.name).equal(modifiedSecondItem.name);
             done();
           });
       });
@@ -180,9 +179,12 @@ describe("Food Items", () => {
           .send(modifiedSecondItem)
           .set("authorization", `token ${adminToken}`)
           .end((err, res) => {
+            console.log("ITEM ID", res.body);
             if (err) return done(err);
             expect(res).to.have.status(400);
-            expect(res.body.error).equal("A valid food Item Id is required");
+            expect(res.body.errors.food_item_id).equal(
+              "A valid food Item Id is required"
+            );
             done();
           });
       });
@@ -196,7 +198,7 @@ describe("Food Items", () => {
             if (err) return done(err);
             console.log("ITEMS ERROR", res.body);
             expect(res).to.have.status(400);
-            expect(res.body).to.have.property("error");
+            expect(res.body).to.have.property("errors");
             done();
           });
       });
