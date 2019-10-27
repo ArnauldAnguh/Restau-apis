@@ -48,7 +48,7 @@ describe("Orders", () => {
         .get("/api/v1/orders")
         .set("authorization", `token ${adminToken}`)
         .end((err, res) => {
-          console.log("ALL ORDERS", res.body)
+          console.log("ALL ORDERS", res.body);
           expect(res).to.have.status(200);
           done();
         });

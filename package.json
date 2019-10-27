@@ -11,6 +11,8 @@
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
     "prod": "npm run build && node src/bin/prod",
     "lint": "eslint",
+    "coverage": "cross-env NODE_ENV=test babel-node node_modules/istanbul/lib/cli.js --include-all-sources cover node_modules/mocha/bin/_mocha -- -R dot --recursive ./src/tests/",
+    "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls",
     "migrate": "babel-node src/db/migrations/migrations.js",
     "migrate:test": "cross-env NODE_ENV=test npm run migrate",
     "test": "npm run migrate:test && cross-env NODE_ENV=test nyc cross-env mocha --require @babel/register ./src/tests/**/*.test.js --exit || true"
@@ -58,10 +60,11 @@
     "babel-watch": "^7.0.0",
     "chai": "^*",
     "chai-http": "*",
-    "coveralls": "*",
+    "coveralls": "^3.0.7",
     "eslint": "^6.4.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "istanbul": "^0.4.5",
     "mocha": "*",
     "mocha-lcov-reporter": "*",
     "nyc": "^13.0.1"

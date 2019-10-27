@@ -1,10 +1,7 @@
 export const firstOrder = {
-  customer_id: 1,
   fooditem: "Rice and Beans",
   quantity: 2,
   total_price: 4000,
-  created_at: "04-09-2018",
-  updated_at: null,
   status: "NEW"
 };
 

@@ -21,7 +21,7 @@ export default {
   },
   async admin(req, res, next) {
     try {
-      if (req.user.role !== "admin") {
+      if (req.user && req.user.role !== "admin") {
         return res.status(401).json({ error: "Unauthorized" });
       }
       return next();

@@ -29,6 +29,7 @@ export default {
     const foodItem = new FoodItem(req.body);
     try {
       foodItem.image = req.file.filename;
+      console.log(req.file);
       if (!foodItem.image) {
         return res.status(400).json({
           error: "Food item image required"
@@ -65,17 +66,22 @@ export default {
   },
 
   async deleteItem(req, res) {
+    const foodItem_id = parseInt(req.params.foodItemId, 10);
+    let foodItem = await FoodItem.findById(foodItem_id);
     try {
-      const foodItem_id = parseInt(req.params.foodItemId, 10);
-      const foodItem = await FoodItem.findById(foodItem_id);
-      await FoodItem.delete(foodItem_id);
-      console.log("FOOD ITEM", foodItem.image);
-      fs.unlink(`./src/uploads/${foodItem.image}`, err => {
-        if (err) {
-          res.status(400).json({ error: "There was an error deleting file" });
-        }
-        return res.status(204).json({ message: "Item deleted successfully" });
-      });
+      if (foodItem) {
+        await FoodItem.delete(foodItem.id);
+        fs.unlink(`./src/uploads/${foodItem.image}`, err => {
+          if (err) {
+            return res
+              .status(400)
+              .json({ message: "There was an error deleting file" });
+          }
+          return res.status(204).json({ message: "Item deleted successfully" });
+        });
+      } else {
+        return res.status(400).json({ error: "Not Found" });
+      }
     } catch (e) {
       return res.status(400).json({ error: e.message });
     }

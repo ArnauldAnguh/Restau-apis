@@ -62,7 +62,6 @@ export default {
     let newUser;
     try {
       user.password = bcrypt.hashSync(user.password, 10);
-      user.role = "admin";
       newUser = await user.save();
       delete newUser.password;
       return res
