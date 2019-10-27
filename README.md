@@ -86,8 +86,7 @@ Restau-api is a food delivery service application for a restaurant where logged 
             "id": 2,
             "role": "user",
             "username": "jackson",
-            "email": "thriller@gmail.com",
-            "password": "$2b$10$zewJ...",
+            "email": "thriller@gmail.com"
             "created_at": "2019-10-14T18:47:27.965Z",
             "updated_at": null
         }
@@ -131,8 +130,7 @@ Restau-api is a food delivery service application for a restaurant where logged 
         "id": 2,
         "role": "user",
         "username": "jane jackson",
-        "email": "thriller@gmail.com",
-        "password": "$2b$10$5JSVTOV...",
+        "email": "thriller@gmail.com"
         "created_at": "2019-10-14T18:47:27.965Z",
         "updated_at": "2019-10-14T19:30:26.114Z"
     },
