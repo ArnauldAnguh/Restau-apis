@@ -1,0 +1,404 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  min-height: 100%;
+}
+
+ul li,
+a,
+button {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.success {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(81, 226, 68, 0.459);
+  color: green;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.success span {
+  float: right;
+  font-size: 25px;
+  color: darkgreen;
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.errors,
+.warning {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgb(214, 85, 85);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.errors span,
+.warning span {
+  float: right;
+  font-size: 25px;
+  color: rgb(136, 9, 9);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.danger {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(141, 19, 19, 0.726);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.danger span {
+  float: right;
+  font-size: 25px;
+  color: rgb(77, 7, 7);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  border: none;
+  height: 60px;
+  position: relative;
+}
+
+header .nav {
+  width: 50%;
+  height: 60px;
+  position: fixed;
+  border: none;
+  background: rgb(8, 8, 8);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
+}
+
+header .nav img {
+  margin: 4px auto;
+  float: left;
+  margin-left: 4px;
+  border-radius: 50%;
+}
+
+header .nav strong {
+  text-align: center;
+  padding: 0px;
+  font-size: 25px;
+}
+
+header .container {
+  width: 50%;
+  height: 60px;
+  position: fixed;
+  right: 0%;
+  border: none;
+  background: rgb(8, 8, 8);
+}
+
+header .container button.user {
+  width: 40px;
+  height: 40px;
+  float: right;
+  background: #18161a;
+  cursor: pointer;
+  margin: 6px;
+  padding: 0px;
+  border: none;
+  border-radius: 50%;
+}
+
+header .container a.homebtn {
+  position: relative;
+  top: 6px;
+  height: 33px;
+  width: 80px;
+  margin: 5px;
+  float: right;
+  line-height: 33px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  background: rgb(248, 212, 51);
+  border-radius: 5px;
+  color: white;
+  padding: 1px 6px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.container-fluid {
+  width: 100%;
+  border: none;
+  display: flex;
+}
+
+.container {
+  width: 80%;
+  position: fixed;
+  right: 0%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* MANAGE ORDERS PAGE */
+.container table {
+  width: 97%;
+  position: relative;
+  text-align: center;
+  border-color: white;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
+
+.container h3 {
+  margin: 70px auto 10px;
+  color: white;
+  float: left;
+  width: 100%;
+  margin-left: 10px;
+  position: relative;
+}
+
+.container h3 small {
+  position: relative;
+  font-size: 14px;
+  float: right;
+  right: 30px;
+  margin: 10px auto 0;
+}
+
+.container thead th {
+  color: rgb(248, 238, 238);
+  background: #a76125;
+  padding: 8px;
+  border: 1px solid white;
+}
+
+.container tbody tr {
+  color: white;
+  background: #201b21;
+  text-align: center;
+}
+
+.container tbody tr td {
+  padding: 10px;
+  border-collapse: separate;
+  border: 1px solid white;
+}
+
+.container td input {
+  cursor: pointer;
+  background: lightblue;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.container td .btn1,
+.container #btn1 {
+  cursor: pointer;
+  background: rgb(69, 194, 96);
+  border: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 8px;
+  margin-right: 4px;
+}
+
+.container td .btn2,
+.container #btn2 {
+  cursor: pointer;
+  background: #ff4d38;
+  border: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.container #btn1 {
+  margin-left: 20px;
+}
+
+/* sidebar */
+.admin {
+  width: 20%;
+  position: fixed;
+  padding: 0px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+}
+
+.admin #sidebar {
+  position: relative;
+  padding: 0px;
+  border: none;
+  margin: 0px;
+}
+
+.admin #sidebar li {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  text-align: center;
+  list-style-type: none;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* WHEN ACTIVE, HIGHTLIGHT THE SIDEBAR LINK */
+.admin #sidebar #manage a {
+  background: rgba(0, 0, 0, 0.9);
+  color: orange;
+}
+
+.admin #sidebar #manage a:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* //HIGHTLIGHTS END */
+
+.admin #sidebar li a {
+  display: block;
+  line-height: 80px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+
+.admin #sidebar li a:hover {
+  background: #222;
+}
+
+/* ADMIN DASHBOARD */
+.container .message {
+  margin: 80px auto 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  width: 90%;
+  height: 300px;
+  padding-top: 5px;
+}
+
+.container .message div {
+  width: 90%;
+  height: 140px;
+  margin: 20px auto;
+  background: #222;
+  padding-top: 15px;
+}
+
+/* Add Itemspage */
+.container form {
+  width: 100%;
+  position: relative;
+  padding: 20px 10px;
+}
+
+.container h2 {
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  padding: 5px 0px;
+  margin: 0px;
+  background: rgb(70, 65, 65);
+}
+
+.container form .form {
+  width: 60%;
+  border: none;
+  border-radius: 12px;
+  padding: 10px;
+  position: relative;
+  margin: 0px auto;
+}
+
+.container form .form-group {
+  padding: 10px;
+  border: none;
+}
+
+.container .form-group label {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 3px;
+}
+
+.container .form-group input,
+#select {
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px 0px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+  margin-top: 5px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+.container .form-group textarea {
+  width: 98%;
+  resize: none;
+  height: 120px;
+  padding: 10px 3px 10px 10px;
+  border-radius: 10px;
+  border: none;
+  color: #222;
+  outline: none;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.container .form-group .button {
+  text-align: center;
+  width: 200px;
+  margin: 0 auto
+}
+
+.container .form-group .button input {
+  margin: 8px auto;
+  cursor: pointer;
+  position: relative;
+  color: orangered;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  background: #201b21;
+}
+
+.container .form-group .button input:hover {
+  background: #18161a;
+}
+
+.container .form-group input#img {
+  width: 50%;
+  background: #201b21;
+  cursor: pointer;
+  color: white;
+}

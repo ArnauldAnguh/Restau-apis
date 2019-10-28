@@ -1,5 +1,4 @@
 import db from "../db";
-
 export default class FoodItem {
   constructor(foodItem) {
     if (foodItem.id) {

@@ -3,11 +3,15 @@ import bodyParser from "body-parser";
 import "core-js/shim";
 import "regenerator-runtime/runtime";
 import morgan from "morgan";
+import path from "path";
+
 const app = express();
 
 import userRoutes from "./routes/users";
 import foodItemsRoutes from "./routes/foodItems";
 import orderRoutes from "./routes/orders";
+
+app.use(express.static(path.resolve("./public")));
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));

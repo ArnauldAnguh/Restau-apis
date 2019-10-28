@@ -1,9 +1,8 @@
 import Order from "../models/Orders";
-
 export default {
   async fetchAllOrders(req, res) {
     const orders = await Order.find({});
-    if (!orders.length) {
+    if (orders.length < 1) {
       return res
         .status(200)
         .json({ data: [], message: "No orders placed yet" });
@@ -12,7 +11,6 @@ export default {
       .status(200)
       .json({ orders: orders, message: "successfully fetched orders" });
   },
-
   async fetchOrderById(req, res) {
     const order_id = parseInt(req.params.order_id);
     if (!order_id || isNaN(order_id)) {
@@ -24,7 +22,6 @@ export default {
     }
     res.status(200).json({ order: order, message: "Order Found" });
   },
-
   async placeOrder(req, res) {
     let totalPrice = 0;
     try {
@@ -46,8 +43,6 @@ export default {
       return res.status(400).json(err.message);
     }
   },
-
-  // Update Order
   async updateOrder(req, res) {
     const order_id = parseInt(req.params.order_id, 10);
     const { status } = req.body;
@@ -73,7 +68,6 @@ export default {
       return res.status(500).json(err);
     }
   },
-
   async deleteOrder(req, res) {
     const order_id = parseInt(req.params.order_id, 10);
     const foodItem = await Order.findById(order_id);

@@ -1,0 +1,248 @@
+.profile {
+  width: 100%;
+  min-height: 100%;
+  background: white;
+  text-align: center;
+  display: flex;
+  margin: 0px;
+  box-sizing: border-box;
+  /* padding: 20px; */
+}
+.success {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(81, 226, 68, 0.459);
+  color: green;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.success span {
+  float: right;
+  font-size: 25px;
+  color: darkgreen;
+  line-height: 0.77em;
+  cursor: pointer;
+}
+.danger {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(141, 19, 19, 0.726);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.danger span {
+  float: right;
+  font-size: 25px;
+  color: rgb(77, 7, 7);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+.errors,
+.warning {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgb(214, 85, 85);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.errors span,
+.warning span {
+  float: right;
+  font-size: 25px;
+  color: rgb(136, 9, 9);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+.profile .account {
+  width: 30%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: rgba(177, 161, 119, 0.541);
+  border-right: 1px solid #efefef;
+}
+.profile .account h1 {
+  margin: 30px auto;
+  font-size: 3vw;
+  color: whitesmoke;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px indianred;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.profile .account .img {
+  width: 20vw;
+  height: 20vw;
+  background: white;
+  border-radius: 50%;
+  border: 10px solid;
+  border-color: indianred;
+  margin: 0px auto;
+  padding: 0px;
+}
+.profile .img img {
+  width: 18vw;
+  height: 20vw;
+  border-radius: 50%;
+}
+.account .records {
+  position: relative;
+  box-sizing: border-box;
+}
+.records .user {
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  margin: 10px auto;
+  border: 1px solid whitesmoke;
+}
+
+.records .user p {
+  padding: 5px;
+  background: blue;
+  color: white;
+  margin: 0px;
+}
+.user form {
+  width: 80%;
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid whitesmoke;
+  box-sizing: border-box;
+}
+.user form input {
+  width: 100%;
+  padding: 10px 20px;
+  border: 1px solid lightgreen;
+  margin: 5px auto;
+  box-sizing: border-box;
+}
+.user form #updatebtn {
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid orangered;
+  background: orangered;
+  border-radius: 10px;
+  outline: none;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  cursor: pointer;
+}
+/* // Stories */
+.profile .stories {
+  width: 70%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0px;
+  background: white;
+}
+.stories .orders {
+  width: 60%;
+  margin: 30px auto 10px;
+  position: relative;
+}
+
+.stories .reservations {
+  width: 60%;
+  margin: 10px auto;
+  position: relative;
+}
+
+.profile h2 {
+  width: 60%;
+  margin: 10px auto;
+}
+.orders ul,
+.reservations ul {
+  padding: 4px;
+}
+
+.orders ul li,
+.reservations ul li {
+  list-style-type: none;
+  color: green;
+  text-align: left;
+  padding: 5px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid;
+}
+
+.orders ul #btn2,
+.reservations ul #btn2 {
+  background: rgb(192, 11, 11);
+  border: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+}
+
+/* //History page */
+
+.history {
+  width: 60%;
+  margin: 20px auto;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #efefef;
+  background: rgba(177, 161, 119, 0.678);
+}
+.homebtn {
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin: 0px auto;
+  font-size: 2.5vw;
+}
+.history .nav {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  border-bottom: 1px solid #efefef;
+  border-radius: 5px 5px 0px 0px;
+  background: rgb(110, 72, 72);
+  box-sizing: border-box;
+}
+.history .nav #btn2 {
+  background: rgb(192, 11, 11);
+  border: none;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+}
+
+#navs {
+  width: 90%;
+  height: 60px;
+  background: white;
+  border: 1px solid #efefef;
+  position: relative;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+#navs a {
+  display: block;
+  text-decoration: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 24px;
+  padding: 15px;
+  outline: 0;
+}
+#navs a span {
+  float: right;
+  margin-right: 10px;
+  color: green;
+  font-size: 15px;
+}

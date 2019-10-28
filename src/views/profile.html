@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../public/css/profile.css" />
+     <link rel="stylesheet" href="../public/css/style.css" />
+         <link rel="shortcut icon" href="../public/png/fast.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/responsive.css" />
+    <title>Make Reservations</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="navbar-header">
+            <a href="#" class="pull-left">
+                <img src="../public/png/fast.png" alt="" id="logo-img" />
+            </a>
+            <div class="navbar-brand">
+                <a href="#" id="nav-bar-a">
+                    <h1>Chef~Gaustau</h1>
+                    <p>
+                        <span> Food is ready for you at your service! </span>
+                    </p>
+                </a>
+            </div>
+            <span id="list-down"><a href="">More</a></span>
+        </div>
+        <div class="collapsable-nav">
+            <ul id="nav-list">
+                <li id="current">
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    Visit
+                    <div class="dropdown-content">
+                        <a href="menu_list.html">See Menu</a>
+                        <a href="categories.html">Categories</a>
+                        <a href="reservations.html">Reservation</a>
+                        <a href="order.html"> Orders</a>
+                        <a href="kitchen.html">Go kitchen </a>
+                    </div>
+                </li>
+                <li id="cart1">
+                    <a href="aboutus.html">About</a>
+                </li>
+
+                <a href="tel:420-324-5008" id="phone">
+                    <span>420-324-5008</span>
+                </a>
+                <li id="profile">
+                    <h1>A</h1>
+                    <div class="dropdown-content" style="width:100%; font-size: 16px; right: 10%;">
+                        <a href="login.html" style="margin: 0px;padding:0px;"> Arnauld</a>
+                        <a href="">help</a>
+                        <a href="auth/login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- /..header ending -->
+    <div class="profile">
+        <div class="account">
+            <h1>My Account</h1>
+            <div class="records">
+                <div class="img">
+                    <img src="../public/png/ch.png" alt="Welcome Chef">
+                </div>
+                <span>Status: <b style="color: green">Active</b></span>
+                <div class="user">
+                    <p><b>Arnauld Anguh</b> <br> <b>arnauldanguh@gmail.com</b> <br> </p>
+                    <form action="profile.html" method="post">
+                        <h2>Edit Your Account</h2>
+                        <input type="text" name="name" placeholder="Enter New Name" value=""><br>
+                        <input type="email" name="email" placeholder="Enter New Email" value=""><br>
+                        <input type="password" name="password" placeholder="Enter New Password" value=""><br>
+                        <button type="submit" id="updatebtn">Update Account</button>
+                    </form>
+                </div>
+                <div class="cart">
+                    <p>
+                        You Currently have
+                        <abbr title="Number of items" style="color: rgb(170, 15, 15);padding: 6px;"><b>3</b></abbr>
+                        items in your cart.
+                        <a href="order.html"  style="color: orangered"><strong>View Cart</strong></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="stories">
+            <div class="orders">
+                <h2>Current Orders </h2>
+                   <small>Pending...</small>
+                <ul>
+                    <p style="padding: 1px 10px;box-sizing: border-box"><span style="float: left">Order</span>   <span  style="float: right">Action</span></p>
+                    <li><p><b style="float: left">> Rice and Beans  </b>&nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                    <li><p><b style="float: left">> Rice and Beans  Rice and Beans </b>&nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                    <li><p><b style="float: left">> Rice and Beans </b>&nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                </ul>
+            </div>
+            <div class="reservations">
+                <h2>Current Reservations </h2>
+                <small>Pending...</small>
+                <ul>
+                    <p style="padding: 1px 10px;box-sizing: border-box"><span style="float: left">Occasion</span>  <span
+                            style="float: right">Action</span></p>
+                    <li><p><b>Birthday</b>&nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                    <li><p><b>Celebration </b> &nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                    <li><p><b>A Date</b> &nbsp; <button type="submit" id="btn2">Cancel</button></p></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="history">
+                <div class="nav"  >
+                    <button type="button" id="btn2">Clear All</button>
+                    <p class="homebtn">History of Orders</p>
+                </div>
+                <div id="navs">
+                    <a href="" > Sandwiches <span> $100</span> </a>
+                </div>
+                <div id="navs">
+                    <a href=""> Fried Chicken <span> $230 </span> </a>
+                </div>
+            
+                <div id="navs">
+                    <a href=""> Fruits & Vegetables <span> $50 </span> </a>
+                </div>
+                <div id="navs">
+                    <a href=""> Fried Chicken <span> $30 </span> </a>
+                </div>
+            
+                <div id="navs">
+                    <a href=""> Fruits & Vegetables <span> $21 </span> </a>
+                </div>
+                <div id="navs">
+                    <a href="" > Fried Chicken <span> $25 </span> </a>
+                </div>
+          
+            </div>
+
+        </div>
+    </div>
+    <div class="followus">
+        Follow Us On :
+        <a href="" title="WhatSapp">
+            <img src="../public/png/whats.png" alt="" />
+        </a>
+        <a href="" title="lin">
+            <img src="../public/png/in.png" alt="" />
+        </a>
+        <a href="" title="instagram">
+            <img src="../public/png/ins.png" alt="" />
+        </a>
+        <a href="" title="twitter">
+            <img src="../public/png/twit.png" alt="" />
+        </a>
+        <a href="" title="youtube">
+            <img src="../public/png/utube.png" alt="" />
+        </a>
+    </div>
+        <footer>
+            <div class="row">
+                <div class="list1" >
+                    <span>Address: </span><br /><br />
+                    Buea ~ Molyko Road <br /><small>Last Vegas Street 3011</small>
+                    <p>
+                        * Delivery area within 2-5 miles, with minimum order of $15 plus $5
+                        charge for all deliveries.
+                    </p>
+                    <span>Comments</span><br />
+                    <p>
+                        " The Best American Restaux I have been to!! And they SERVE Favalous
+                        dishes"
+                    </p>
+                    <p>
+                        " Amazing Food! good service! couldn't ask for more! je reviendra
+                        encore et encore!"
+                    </p>
+                </div>
+                <div class="map">
+                    <h2>Location</h2>
+                    <br />
+                    <img src="../public/png/ma.png" alt="" />
+                </div>
+                <div class="list4">
+                    <span><img src="../public/png/st.png" alt="" /> Stay In touch </span>
+                    <br /><br />
+                    <form action="" method="">
+                        <div>
+                            <input type="text" placeholder="Your email address" name="subemail" />
+                            <button type="submit" name="subscribe">
+                                Subscribe
+                            </button>
+                        </div>
+                        <p>
+                            Get the most recent updates from <br />
+                            our site to stay in touch...
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <div class="list3">
+                <p class="pull-left">
+                    © Copyright
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Fast-Food-Fast Restaux. All rights reserved || Designed by
+                    <span>
+                        <a target="_blank" href="#" style="color: orange;text-decoration:none;">
+                            Arnauld
+                        </a>
+                    </span>
+                </p>
+            </div>
+        </footer>
+</body>
+</html>

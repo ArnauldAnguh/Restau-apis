@@ -1,5 +1,4 @@
 import db from "../db";
-
 export default class User {
   constructor(user) {
     if (!user) {

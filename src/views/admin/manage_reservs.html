@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../../public/css/admin.css" />
+    <link rel="shortcut icon" href="../public/png/fast.png" type="image/x-icon">
+    <title>Admin</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <img src="../../public/png/ch.png" width="50px" height="50px;" />
+        <strong>Admin</strong>
+        <br />
+        <span>welcome to admin</span>
+      </div>
+      <div class="container">
+        <a href=" index.html" class="homebtn">Go Home</a>
+        <button class="user">User</button>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="admin">
+        <ul id="sidebar">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="manage_orders.html">Manage Orders</a></li>
+          <li id="manage">
+            <a href="manage_reservs.html">Manage Reservations</a>
+          </li>
+          <li><a href="manage_items.html">Manage Items</a></li>
+
+          <li><a href="add_item.html">Add Item</a></li>
+          <li><a href="admin_history.html">History Of Orders</a></li>
+        </ul>
+      </div>
+      <div class="container">
+        <table>
+          <h3>
+            Recent orders seen at the top of the table
+            <small>3 recent reservations</small>
+          </h3>
+          <a href="" id="btn1">Reserve All</a>
+          <a href="" id="btn2">Decline All</a>
+          <thead>
+            <tr>
+              <th>N<sup>o</sup></th>
+              <th>Client</th>
+              <th>Message</th>
+              <th>Event</th>
+              <th>Contact</th>
+              <th colspan="3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="radio" /></td>
+              <td>first.reservation@example.com</td>
+              <td>
+                Hello, I would would like to book a table for 2 persons tonight
+                at <b>7:30 pm.</b>
+              </td>
+              <td><b>Date</b></td>
+              <td>+237652467448</td>
+              <td><a href="" class="btn1">Reserve</a></td>
+              <td><a href="" class="btn2">Decline</a></td>
+            </tr>
+
+            <tr>
+              <td><input type="radio" /></td>
+              <td>second.reservation@example.com</td>
+              <td>
+                Hello, I would would like to book a table for Next Sunday at
+                <b>8:00 pm.</b>
+              </td>
+              <td><b>Weekend Party</b></td>
+              <td>+237671869068</td>
+              <td><a href="" class="btn1">Reserve</a></td>
+              <td><a href="" class="btn2">Decline</a></td>
+            </tr>
+
+            <tr>
+              <td><input type="radio" /></td>
+              <td>third.reservation@example.com</td>
+              <td>
+                Hello, I would would like to book a table for the 24<sup
+                  >th</sup
+                >
+                of this Month at<b> 10:00 pm.</b>
+              </td>
+              <td><b>Birthday</b></td>
+              <td>+237671869068</td>
+              <td><a href="" class="btn1">Reserve</a></td>
+              <td><a href="" class="btn2">Decline</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
