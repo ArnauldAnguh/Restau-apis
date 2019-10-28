@@ -1,7 +1,7 @@
 import { Pool, Client } from "pg";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import db from "../index";
+import jwt from "jsonwebtoken";
 import { firstUser } from "../../tests/data/users";
 import { firstOrder } from "../../tests/data/orders";
 import { firstItem } from "../../tests/data/foodItems";

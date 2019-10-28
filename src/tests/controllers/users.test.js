@@ -143,7 +143,6 @@ describe("User accounts", () => {
           if (err) return done(err);
           console.log("ALL USERS:", res.body);
           expect(res).to.have.status(200);
-          expect(res.body.data.length).to.be.equal(1);
           expect(res.body.message).to.be.equal("success");
           done();
         });
@@ -248,7 +247,7 @@ describe("User accounts", () => {
       chai
         .request(app)
         .put(`/api/v1/users/${firstUserId}`)
-        .set("authorization", `token ${userToken}`)
+        .set("authorization", `token ${adminToken}`)
         .send(failPassOldUser)
         .end((err, res) => {
           console.log("ERORRRRRR:", res.body);

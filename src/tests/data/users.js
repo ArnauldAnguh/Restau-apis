@@ -61,7 +61,7 @@ export const modifiedSecondUser = {
 
 export const failPassOldUser = {
   ...modifiedSecondUser,
-  passwordOld: `${modifiedSecondUser.passwordOld}mutilate`
+  passwordOld: `asd${modifiedSecondUser.passwordOld}mutilate`
 };
 
 export const failConfPassUser = {

@@ -1,5 +1,4 @@
 import db from "../db";
-
 export default class Orders {
   constructor(order) {
     if (order && order.order_id) {
@@ -18,7 +17,6 @@ export default class Orders {
       this.updated_at = order.updated_at;
     }
   }
-
   async save() {
     const params = [this.customer_id, this.total_price, this.itemName];
     try {
@@ -31,7 +29,6 @@ export default class Orders {
       return e;
     }
   }
-
   async saveOrderItems() {
     const params = [
       this.order_id,
@@ -47,7 +44,6 @@ export default class Orders {
       return e;
     }
   }
-
   async update() {
     const params = [
       this.customer_id,
@@ -73,7 +69,6 @@ export default class Orders {
       return error;
     }
   }
-
   static async getOrderHistory(userId) {
     const text = `SELECT o.*, o_i.*, i.name, i.item_image
                       FROM orders o LEFT JOIN order_items o_i ON o.id=o_i.order_id
@@ -85,12 +80,10 @@ export default class Orders {
       return new Error(error);
     }
   }
-
   static async find(query) {
     let paramsString = "";
     let queryString = "";
     const params = [];
-
     if (Object.keys(query).length > 0) {
       Object.keys(query).map((key, index) => {
         index += 1;
@@ -99,7 +92,6 @@ export default class Orders {
         params.push(query[key]);
         return key;
       });
-
       queryString = `SELECT o.*, o_i.*, i.name, i.image, u.username, u.email
                       FROM orders o 
                     LEFT JOIN order_items o_i ON o.id=o_i.order_id
@@ -115,7 +107,6 @@ export default class Orders {
       return error;
     }
   }
-
   static async findById(orderId) {
     try {
       const { rows } = await db.query(
@@ -127,7 +118,6 @@ export default class Orders {
       return error;
     }
   }
-
   static async delete(orderId) {
     try {
       const result = await db.query("DELETE FROM orders WHERE id=$1", [

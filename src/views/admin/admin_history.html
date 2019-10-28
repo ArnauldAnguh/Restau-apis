@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="shortcut icon" href="../public/png/fast.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../public/css/admin.css" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <img src="../../public/png/ch.png" width="50px" height="50px;" />
+        <strong>Admin</strong>
+        <br />
+        <span>welcome to admin</span>
+      </div>
+      <div class="container">
+        <a href="index.html" class="homebtn">Go Home</a>
+        <button class="user" id="userbtn">
+          <img src="/src/public/png/settings.svg" style="border-radius: 50%;" />
+        </button>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="admin">
+        <ul id="sidebar">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="manage_orders.html">Manage Orders</a></li>
+          <li>
+            <a href="manage_reservs.html">Manage Reservations</a>
+          </li>
+          <li><a href="manage_items.html">Manage Items</a></li>
+
+          <li><a href="add_item.html">Add Item</a></li>
+
+          <li id="manage">
+            <a href="admin_history.html">History Of Orders</a>
+          </li>
+        </ul>
+      </div>
+      <div class="container">
+        <table>
+          <h3>All Admins</h3>
+          <a href="" id="btn2" style="margin-left: 20px;">Empty</a>
+          <thead>
+            <tr>
+              <th>N<sup>o</sup></th>
+              <th>Client email</th>
+              <th>Location</th>
+              <th>Order</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="radio" /></td>
+              <td>professor@gmail.com</td>
+              <td>St. Luke Street, NY ~ USA</td>
+              <td>Eggs,Fried Chicken,Noodles,Champaign</td>
+              <td><a href="" class="btn2">Delete</a></td>
+            </tr>
+            <tr>
+              <td><input type="radio" /></td>
+              <td>professor@gmail.com</td>
+              <td>Molyko, Cape-Town ~ South Africa</td>
+              <td>Achu,Fried Chicken,Noodles,1989 Tour de Paris</td>
+              <td><a href="" class="btn2">Delete</a></td>
+            </tr>
+
+            <tr>
+              <td><input type="radio" /></td>
+              <td>maxsteward@gmail.com</td>
+              <td>Molyko, Buea ~ Cameroon</td>
+              <td>Poritos,Fried Chicken,Noodles,Red wine</td>
+              <td><a href="" class="btn2">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      const settingsBtn = (document.getElementById("userbtn").onclick = () => {
+        location.href = "setting.html";
+      });
+    </script>
+  </body>
+</html>

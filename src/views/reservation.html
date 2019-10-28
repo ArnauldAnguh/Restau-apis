@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../public/css/style.css" />
+        <link rel="shortcut icon" href="../public/png/fast.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/responsive.css" />   
+    <title>Make Reservations</title>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="navbar-header">
+            <a href="#" class="pull-left">
+                <img src="../public/png/fast.png" alt="" id="logo-img" />
+            </a>
+            <div class="navbar-brand">
+                <a href="#" id="nav-bar-a">
+                    <h1>Chef~Gaustau</h1>
+                    <p>
+                        <span> Food is ready for you at your service! </span>
+                    </p>
+                </a>
+            </div>
+            <span id="list-down"><a href="">More</a></span>
+        </div>
+        <div class="collapsable-nav">
+            <ul id="nav-list">
+                <li id="current">
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    Visit
+                    <div class="dropdown-content">
+                        <a href="menu_list.html">See Menu</a>
+                        <a href="categories.html">Categories</a>
+                        <a href="reservations.html">Reservation</a>
+                        <a href="order.html"> Orders</a>
+                        <a href="kitchen.html">Go kitchen </a>
+                    </div>
+                </li>
+                <li id="cart1">
+                    <a href="aboutUs.html">About</a>
+                </li>
+    
+                <a href="tel:420-324-5008" id="phone">
+                    <span>420-324-5008</span>
+                </a>
+                <li id="profile">
+                    <h1>A</h1>
+                    <div class="dropdown-content" style="width:100%; font-size: 16px; right: 10%;">
+                        <a href="profile.html" style="margin: 0px;padding:0px;"> Profile </a>
+                        <a href="">help</a>
+                        <a href="auth/login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- /..header ending -->
+    <div class="jumbotron">
+        <div class="details">
+            <div class="h">
+                <h3>Reservations</h3>
+                <h1>Book Your Tables Now</h1>
+            </div>
+            <form action="reservations.html" id="reservation" method="POST">
+                <div class="plague" style="background: white;padding: 0px;border: none">
+                    <img src="../public/png/us.jpg" alt="" width="100%" height="100px" />
+                </div>
+                <div class="fields">
+                    <img src="../public/png/fas.png" alt="" style="width: 50%;float: right" />
+                    <div class="form">
+                        <label>Fullname</label><br />
+                        <input type="text" name="name" value=" "
+                            placeholder="Enter Full Name" />
+                    </div>
+                    <div class="form">
+                        <label>Party Size</label><br />
+                        <input type="text" name="party" value=" "
+                            placeholder="Enter Party Size/type" />
+                    </div>
+                    <div class="form">
+                        <label>Date</label><br />
+                        <input type="date" name="date" value=" " />
+                    </div>
+                    <div class="form">
+                        <label>Time</label><br />
+                        <input type="time" name="time" value=" " />
+                    </div>
+    
+                    <div class="form">
+                        <label>Phone</label><br />
+                        <input type="tel" placeholder="(+237) " value=" "
+                            name="tel" />
+                    </div>
+                </div>
+                <hr />
+                <div class="btn2">
+                    <input type="submit" name="submit" value="Submit" />
+                </div>
+            </form>
+            <p style="color: white;text-align: center;">
+                Book your Table now and we will spice Your day!.<br />
+                Services are available Now.
+            </p>
+        </div>
+        <footer>
+            <div class="row">
+                <div class="list1">
+                    <span>Address: </span><br /><br />
+                    Buea ~ Molyko Road <br /><small>Last Vegas Street 3011</small>
+                    <p>
+                        * Delivery area within 2-5 miles, with minimum order of $15 plus $5
+                        charge for all deliveries.
+                    </p>
+                    <span>Comments</span><br />
+                    <p>
+                        " The Best American Restaux I have been to!! And they SERVE Favalous
+                        dishes"
+                    </p>
+                    <p>
+                        " Amazing Food! good service! couldn't ask for more! je reviendra
+                        encore et encore!"
+                    </p>
+                </div>
+                <div class="map">
+                    <h2>Location</h2>
+                    <br />
+                    <img src="../public/png/ma.png" alt="" />
+                </div>
+                <div class="list4">
+                    <span><img src="../public/png/st.png" alt="" /> Stay In touch </span>
+                    <br /><br />
+                    <form action="" method="">
+                        <div>
+                            <input type="text" placeholder="Your email address" name="subemail" />
+                            <button type="submit" name="subscribe">
+                                Subscribe
+                            </button>
+                        </div>
+                        <p>
+                            Get the most recent updates from <br />
+                            our site to stay in touch...
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <div class="list3">
+                <p class="pull-left">
+                    © Copyright
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Fast-Food-Fast Restaux. All rights reserved || Designed by
+                    <span>
+                        <a target="_blank" href="#" style="color: orange;text-decoration:none;">
+                            Arnauld
+                        </a>
+                    </span>
+                </p>
+            </div>
+        </footer>
+</body>
+</html>

@@ -1,0 +1,1105 @@
+html,
+body {
+  min-height: 100%;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: orangered;
+}
+
+body::-moz-scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::-moz-scrollbar-thumb {
+  background: orangered;
+}
+
+body::scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::scrollbar-thumb {
+  background: orangered;
+}
+
+/* *****HEADER******* */
+.header {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  top: 0%;
+  margin: 0px;
+  z-index: 3;
+  border: none;
+  background: rgb(153, 46, 46);
+}
+
+.navbar-header {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.navbar-header #list-down {
+  display: none;
+}
+
+.navbar-brand {
+  margin: 0px;
+  border: none;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.navbar-brand a#nav-bar-a {
+  width: 100%;
+  font-size: 1.3em;
+  margin-bottom: 0;
+  text-decoration: none;
+  color: #ffc609;
+  font-family: "Lora", serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #222;
+  line-height: 0.77;
+  position: relative;
+}
+
+.navbar-brand a#nav-bar-a h1 {
+  width: 100%;
+  padding: 5px;
+  margin: 0px;
+}
+
+.navbar-brand p {
+  text-transform: uppercase;
+  font-size: 0.5em;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.navbar-brand a p span {
+  vertical-align: middle;
+  color: white;
+}
+
+.navbar-header .pull-left {
+  float: left;
+  padding: 0px;
+  border-radius: 50%;
+  margin: 10px 5px 10px 10px;
+  line-height: 0px;
+  outline: 0;
+}
+
+#logo-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid orange;
+  background: rgb(153, 46, 46);
+  margin: 0px;
+}
+
+.success {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(81, 226, 68, 0.459);
+  color: green;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.success span {
+  float: right;
+  font-size: 25px;
+  color: darkgreen;
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.danger {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(141, 19, 19, 0.726);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.danger span {
+  float: right;
+  font-size: 25px;
+  color: rgb(77, 7, 7);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.errors,
+.warning {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgb(214, 85, 85);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.errors span,
+.warning span {
+  float: right;
+  font-size: 25px;
+  color: rgb(136, 9, 9);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.collapsable-nav {
+  width: 50%;
+  height: 100px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-right: 0px;
+}
+
+.collapsable-nav #nav-list {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: right;
+  align-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.collapsable-nav ul#nav-list li {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  width: 13%;
+  height: 50px;
+  line-height: 50px;
+  list-style: none;
+  padding: 3px;
+  font-size: 1.3em;
+}
+
+#current a {
+  color: rgb(243, 98, 45);
+  border-bottom: 2px solid orange;
+}
+
+.collapsable-nav ul#nav-list a#phone span {
+  color: yellow;
+}
+
+.collapsable-nav #nav-list li:hover,
+.collapsable-nav #nav-list a#phone span:hover {
+  color: rgb(223, 72, 72);
+}
+
+.collapsable-nav #nav-list li:last-child {
+  border-right: none;
+  padding-right: 5px;
+}
+
+.collapsable-nav #nav-list a:hover {
+  background: transparent;
+}
+
+ul#nav-list li span {
+  padding: 5px;
+  display: flex;
+  vertical-align: center;
+  line-height: 1.5em;
+}
+
+#nav-list a#phone {
+  padding: 2px;
+  text-decoration: none;
+  color: orange;
+  text-align: center;
+  outline: 0;
+  display: inline-flex;
+  border: none;
+  margin: 10px;
+  font-size: 1.5em;
+}
+
+#nav-list #phone:hover {
+  color: orangered;
+  background-color: transparent;
+}
+
+.collapsable-nav #nav-list li,
+.collapsable-nav #nav-list li a {
+  color: white;
+}
+
+.collapsable-nav #nav-list li a {
+  width: 100%;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  background: transparent;
+  margin: 0px;
+}
+
+#nav-list span {
+  color: white;
+}
+
+.collapsable-nav #nav-list li a:hover,
+.collapsable-nav #nav-list li span:hover {
+  color: orangered;
+  transition: 0.5s;
+}
+
+.collapsable-nav #nav-list li:first-child img {
+  width: 37px;
+  height: 30px;
+  margin-left: 8px;
+  top: 10px;
+}
+
+.collapsable-nav #nav-list li img {
+  width: 37px;
+  height: 30px;
+  top: 5px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.collapsable-nav #nav-list li#profile h1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgb(238, 245, 238);
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  line-height: 40px;
+  outline: none;
+  font-size: 20px;
+  color: orangered;
+  text-align: center;
+}
+
+/* Dropdown */
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  min-width: 7vw;
+  padding: 5px;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: white;
+  padding: 5px 0px;
+  position: relative;
+  height: 2.5vw;
+  text-decoration: none;
+  display: block;
+  font-size: 17px;
+  line-height: 2em;
+  width: 100%;
+  border-bottom: 1px solid;
+  text-align: center;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: rgba(0, 0, 0, 0.877);
+}
+
+/* Show the dropdown menu on hover */
+li:hover .dropdown-content {
+  display: block;
+  transition: all 5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* //END OF HEADER */
+
+/* BODY SECTION */
+
+/* PHONE DESIGN */
+.phone {
+  width: 35%;
+  max-width: 32vw;
+  padding: 10px;
+  z-index: 2;
+}
+
+.phone img {
+  background: url("../png/rest1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-clip: content-box;
+  box-flex: flex;
+}
+
+/* //Close Phone design */
+
+/* PARALLAX EFFECT */
+.parallax {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  margin: 0px;
+  color: white;
+  display: flex;
+  border: none;
+  background: url("../png/steak.jpg");
+  backface-visibility: visible;
+  background-clip: border-box;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  border: 0px;
+  padding: 0px;
+}
+
+.parallax .intro {
+  width: 75%;
+  position: relative;
+}
+
+.intro div {
+  padding: 10px;
+  position: relative;
+  margin: 70px auto;
+}
+
+.parallax .intro h3,
+h1,
+h4 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 1px;
+  width: 100%;
+  position: relative;
+}
+
+.intro h3 {
+  font-size: 4vw;
+}
+
+.intro h4 {
+  font-size: 3vw;
+}
+
+.intro h1 {
+  font-size: 5vw;
+  padding-right: 5px;
+  border-right: 2px solid #e79d14;
+}
+
+.parallax img {
+  width: 440px;
+  height: 630px;
+  margin: 10px 50px 0px 0px;
+  background-position: center;
+  backface-visibility: visible;
+  background-clip: content-box;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  padding: 0px;
+  background-size: 98%;
+  background-origin: content-box;
+}
+
+.jumbotron {
+  margin: 20px 0px;
+}
+
+.jumbotron .details {
+  width: 56%;
+  position: static;
+  top: 10%;
+  bottom: -6px;
+  margin: 10px auto;
+  background: rgba(0, 0, 0, 0.877);
+  padding: 20px 10px;
+}
+
+.jumbotron .details .h {
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+  border-bottom: 2px solid orange;
+}
+
+.jumbotron .details h3 {
+  color: orange;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.jumbotron .details h1 {
+  width: 50%;
+  text-align: center;
+  color: white;
+  text-transform: capitalize;
+}
+
+.jumbotron .details form {
+  margin: 10px auto;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  background: white;
+}
+
+.jumbotron .details form .form {
+  padding: 7px;
+  margin: 5px;
+  outline: none;
+}
+
+.jumbotron .details form .fields {
+  padding: 0px;
+  justify-content: center;
+  align-content: center;
+}
+
+.jumbotron .details form .form input {
+  width: 20vw;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0px;
+  outline: none;
+}
+
+.jumbotron #reservation {
+  transition: all 0.5s forwards;
+}
+
+.jumbotron .details form .btn2 {
+  padding: 0px;
+  width: 90px;
+  margin: 5px auto;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.jumbotron .details form .btn2 input {
+  padding: 8px;
+  background: orange;
+  width: 90px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.content {
+  width: 100%;
+  color: white;
+  background: #222;
+  border: none;
+}
+
+.content .items-head {
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.content .itemsbx {
+  overflow-y: hidden;
+  padding: 20px 0px;
+  border: none;
+  width: 100%;
+  position: relative;
+  margin: 10px auto;
+}
+
+.content .items {
+  width: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  padding: 10px 0px;
+}
+
+.content .item {
+  width: 220px;
+  height: 250px;
+  display: flex;
+  border: none;
+  position: relative;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.3);
+  padding: 0px;
+  margin: 10px;
+  border-top: 2px solid red;
+}
+
+.content .item a {
+  text-decoration: none;
+  display: block;
+  width: 220px;
+  height: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.content .items a .price {
+  width: 50px;
+  position: relative;
+  height: 20px;
+  background: rgb(155, 36, 36);
+  color: white;
+  font-family: fantasy;
+  text-align: center;
+  z-index: 2;
+}
+
+.content .items-head h1 {
+  text-align: center;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 10px;
+}
+
+.content .item h2 {
+  position: relative;
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 3px;
+  height: 30px;
+  top: -24px;
+  text-decoration: none;
+  z-index: 1;
+  margin: 0px;
+}
+
+.content .items-head p {
+  text-align: center;
+}
+
+.content .item a img {
+  width: 100%;
+  height: 215px;
+  top: -20px;
+  position: relative;
+  border: none;
+  margin: 0px;
+  border-radius: 0px;
+  z-index: 1;
+}
+
+.content .item:hover .displaybtn {
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  background-color: rgba(26, 26, 26, 0.877);
+  color: orange;
+  width: 80%;
+  font-size: 24px;
+}
+
+.content .item:hover img {
+  background: white;
+}
+
+#fr {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding: 0px;
+  margin: 4px 0px;
+}
+
+#fr p {
+  width: 100%;
+  height: 80vh;
+  position: absolute;
+  text-align: center;
+  color: orangered;
+  text-shadow: 2px 8px 5px orange;
+  font-size: 7vw;
+  line-height: 50%;
+  margin-top: 100px;
+}
+
+.displaybtn {
+  border: none;
+  position: absolute;
+  top: 35%;
+  width: 90%;
+  height: 50px;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  outline: 0;
+  color: white;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.followus {
+  width: 100%;
+  position: relative;
+  height: 45px;
+  background: rgb(104, 74, 74);
+  border: none;
+  display: flex;
+  padding: 5px 0px;
+  justify-content: center;
+  align-content: center;
+  font-size: 1.5em;
+  line-height: 45px;
+  color: yellow;
+}
+
+.followus span {
+  font-size: 2vw;
+}
+
+.followus a {
+  width: 4vw;
+  position: relative;
+  margin: 3px 10px;
+  padding: 2px;
+  border-radius: 20px;
+}
+
+.followus a:hover {
+  opacity: .5;
+}
+
+.followus a img {
+  width: 4vw;
+  height: 40px;
+}
+
+.time {
+  width: 300px;
+  background: lightblue;
+  position: absolute;
+  top: 65%;
+  left: 5%;
+  padding: 4px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.877);
+}
+
+.time p {
+  text-align: left;
+  margin-left: 45px;
+}
+
+/* MENU LIST */
+#menu {
+  width: 100%;
+  position: relative;
+  margin: 0px;
+  padding: 10px;
+}
+
+#menu .menu_title {
+  width: 100%;
+  text-align: center;
+  color: orangered;
+  text-shadow: 2px 2px 5px orange;
+  font-size: 7vw;
+  margin: 0px;
+}
+
+.menu-content {
+  margin: 0px auto;
+  width: 60%;
+  padding: 10px;
+  color: #222;
+}
+
+.menu-content .section1,
+.menu-content .section2,
+.menu-content .section3 {
+  margin: 20px 0px;
+  border-top: 1px solid lightgrey;
+}
+
+.menu-content h1 {
+  margin: 20px;
+  color: orangered;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu-content img {
+  width: 100%;
+}
+
+/* /...END OF MENU */
+
+/* /KITCHEN SECTION */
+#con-kitchen {
+  min-height: 100vh;
+  height: auto;
+}
+
+#con-kitchen .k-welcome {
+  height: 500px;
+  background: url("/png/fd.png"), #222;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  width: 100%;
+}
+
+#con-kitchen .k-welcome p {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(241, 172, 172, 0.3);
+  font-size: 7vw;
+  font-weight: 900;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#con-kitchen .row {
+  width: 100%;
+  height: 600px;
+  background: url("/png/vice.png"), white;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-attachment: fixed;
+  background-clip: content-box;
+  background-position: left;
+  margin: 0px auto;
+  padding: 0px;
+  border: none;
+  box-sizing: border-box;
+}
+
+#con-kitchen .row p {
+  width: 30%;
+  height: 600px;
+  margin: 0px auto;
+  padding: 20px 10px;
+  border: none;
+  box-sizing: border-box;
+}
+
+/* ../END KITCHEN SECT/ */
+
+/* ABOUT PAGE */
+#menu .about {
+  width: 100%;
+  text-align: center;
+  color: rgb(245, 84, 26);
+  text-shadow: 2px 2px 5px orange;
+  font-size: 4vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  line-height: 10vw;
+  margin: 0px;
+}
+
+#menu .video {
+  border: none;
+  outline: 0;
+  padding: 0px;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 25vw;
+  background: #222;
+}
+
+.reviews {
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.reviews h2 {
+  width: 100%;
+}
+
+.reviews input[type="text"] {
+  text-align: center;
+  color: #000;
+  cursor: no-drop;
+}
+
+.reviews input[type="submit"] {
+  text-align: center;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background: green;
+  margin: 5px;
+  border-radius: 5px;
+  opacity: 0.7;
+  float: right;
+}
+
+.text-area {
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px;
+}
+
+.text-area #value {
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  resize: none;
+  color: rgb(90, 90, 90);
+  outline: none;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.text-area #value:active,
+.text-area #value:focus {
+  transition: border 2s ease-in-out;
+  box-shadow: 1px 0px 3px grey;
+}
+
+.results {
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 20px 0px;
+}
+
+.results .cmt_user {
+  width: 10%;
+  padding: 0px;
+  display: block;
+  margin-right: 2px;
+  box-sizing: border-box;
+  border-right: 1px solid #ffeaea;
+}
+
+.results small {
+  color: #666;
+  font-weight: 700;
+  margin: 0px 10px;
+}
+
+.results .cmt {
+  padding: 3px;
+  display: flex;
+  margin: 20px 7px;
+  width: 90%;
+}
+
+.cmt .img {
+  width: 50%;
+  height: 50px;
+  background: url("/png/user.png") white center no-repeat;
+  background-size: 100%;
+  border-radius: 50%;
+  margin: 3px auto 0;
+}
+
+.cmt p {
+  width: 80%;
+  background: #fff;
+  font-style: italic;
+  padding: 8px 20px;
+  border: 1px solid #ffeaea;
+  border-radius: 20px;
+  margin: 5px auto;
+}
+
+.section1 .abt_text {
+  position: absolute;
+  width: 33%;
+  color: white;
+  margin: 14%;
+  animation: animate 3s linear infinite;
+  font-family: justify;
+  text-align: center;
+  text-shadow: 1px 2px 4px orange;
+  box-sizing: border-box;
+  box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes animate {
+  from {
+    font-style: bold;
+    transform: scaleY(3);
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  to {
+    font-style: italic;
+    box-shadow: none;
+    font-size: 5vw;
+    transform: scaleY(4);
+    animation-direction: alternate;
+  }
+}
+
+#menu .video video {
+  width: 100%;
+  border: none;
+  outline: 0;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+#menu .comment {
+  background: url("/png/cel.png") white;
+}
+
+#menu .comment p {
+  width: 100%;
+  text-align: center;
+  color: rgb(43, 43, 43);
+  text-shadow: 2px 2px 5px orange;
+  font-size: 4vw;
+  margin: 0px;
+}
+
+/* ../END ABOUT PAGE */
+
+footer {
+  min-width: 100%;
+  width: auto;
+  bottom: 0px;
+  position: relative;
+  margin: 0px;
+  background-color: rgb(14, 13, 13);
+}
+
+footer .row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  color: white;
+  padding: 10px 0;
+}
+
+footer .list1 {
+  position: relative;
+  padding: 10px 10px;
+  border-right: 1px solid;
+}
+
+footer .list4 {
+  width: 380px;
+}
+
+footer .list4 img {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-left: 20px;
+}
+
+footer .list4 form {
+  width: 100%;
+  margin: 15px auto 0;
+  padding: 10px 0;
+  margin: 0px;
+}
+
+footer .list4 form div {
+  width: 100%;
+  display: flex;
+  padding: 10px 0px;
+}
+
+footer .list4 form input {
+  padding: 5px;
+  border: none;
+  width: 70%;
+}
+
+footer .list4 form button {
+  padding: 8px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  background: rgb(165, 30, 30);
+}
+
+footer .map {
+  width: 40%;
+  margin-right: 10px;
+  border-right: 1px solid;
+  padding-right: 20px;
+}
+
+footer .map h2 {
+  padding: 7px;
+  color: rgb(185, 69, 69);
+}
+
+footer .map img {
+  width: 90%;
+  height: 200px;
+  float: right;
+}
+
+footer span {
+  color: rgb(185, 69, 69);
+  font-size: 17px;
+}
+
+footer .list3 {
+  width: 100%;
+  margin: 0;
+  top: 14px;
+  bottom: 0;
+  position: relative;
+  background: #606060;
+}
+
+.list3 .pull-left {
+  position: relative;
+  padding: 10px 10px;
+  color: white;
+  text-align: center;
+}

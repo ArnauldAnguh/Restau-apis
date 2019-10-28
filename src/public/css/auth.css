@@ -1,0 +1,406 @@
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: orangered;
+}
+
+body::-moz-scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::-moz-scrollbar-thumb {
+  background: orangered;
+}
+
+body::scrollbar {
+  width: 10px;
+  background: orange;
+}
+
+body::scrollbar-thumb {
+  background: orangered;
+}
+
+a {
+  outline: 0;
+}
+
+/* *****HEADER******* */
+.header {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  top: 0%;
+  margin: 0px;
+  z-index: 3;
+  border: none;
+  background: rgb(153, 46, 46);
+}
+
+.navbar-header {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+.navbar-header #list-down {
+  display: none;
+}
+
+.navbar-brand {
+  margin: 0px;
+  border: none;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.navbar-brand a#nav-bar-a {
+  width: 100%;
+  font-size: 1.3em;
+  margin-bottom: 0;
+  text-decoration: none;
+  color: #ffc609;
+  font-family: "Lora", serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #222;
+  line-height: 0.77;
+  position: relative;
+}
+
+.navbar-brand a#nav-bar-a h1 {
+  width: 100%;
+  padding: 5px;
+  margin: 0px;
+}
+
+.navbar-brand p {
+  text-transform: uppercase;
+  font-size: 0.5em;
+  margin-top: 0px;
+  margin-left: 10px;
+  padding: 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.navbar-brand a p span {
+  vertical-align: middle;
+  color: white;
+}
+
+.navbar-header .pull-left {
+  float: left;
+  padding: 0px;
+  border-radius: 50%;
+  margin: 10px 5px 10px 10px;
+  line-height: 0px;
+  outline: 0;
+}
+
+#logo-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid orange;
+  background: rgb(153, 46, 46);
+  margin: 0px;
+}
+
+/* BODY */
+
+/* Welcome page */
+body,
+.container-flow {
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  background-image: url("../png/steak.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.container1 {
+  position: relative;
+  margin: 10% auto;
+  text-align: center;
+  padding: 20px;
+  width: 80%;
+}
+
+.container1 p {
+  font-size: 60px;
+  color: rgb(255, 176, 7);
+  text-shadow: 5px -2px 5px rgb(196, 112, 15);
+  animation: animate 1s linear forwards;
+  border: none;
+  padding-bottom: 0px;
+}
+
+@keyframes animate {
+  from {
+    opacity: 0;
+    position: relative;
+    left: -50px;
+    text-align: left;
+    transition: all 1s linear;
+  }
+
+  20% {
+    opacity: 0.2;
+    position: relative;
+    text-align: center;
+    transition: all 0.9s linear;
+  }
+
+  60% {
+    opacity: 0.7;
+    position: relative;
+    text-align: center;
+    transition: all 0.6s linear;
+  }
+
+  to {
+    position: relative;
+    left: 50px;
+    opacity: 1;
+    text-align: center;
+    transition: all 1.3s linear;
+    box-shadow: 0px 70px 100px rgba(255, 124, 2, 0.397);
+  }
+}
+
+.welcome {
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.welcome a {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px;
+  color: white;
+  border-radius: 10px;
+  margin: 2px;
+  outline: 0;
+}
+
+.welcome a:hover,
+.welcome a:focus {
+  color: orange;
+}
+
+.welcome a.first {
+  background: rgb(235, 123, 89);
+}
+
+.welcome a.second {
+  background: rgb(57, 95, 138);
+}
+
+/* ../welcome page end */
+
+.container {
+  position: relative;
+  margin: 0;
+  text-align: center;
+  padding: 10px 0px;
+  width: 100%;
+  min-height: 40%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+form {
+  position: relative;
+  margin: 4% auto 0;
+  text-align: center;
+  background: rgb(247, 195, 176);
+  padding: 10px 0px;
+  width: 50%;
+  border: none;
+  border-radius: 20px;
+}
+
+form .form-group {
+  margin-top: 9px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+form .form-group input {
+  padding: 8px;
+  outline: none;
+  width: 260px;
+  border: none;
+  margin: 0px;
+  border-radius: 20px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+form .form-group input:active,
+form .form-group input:focus {
+  width: 280px;
+  transition: 0.3s ease-out;
+  outline: none;
+}
+
+form .btn {
+  width: 50%;
+  margin: 10px auto;
+  padding: 0px;
+}
+
+form .btn input {
+  width: 40%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  color: white;
+  background: rgb(163, 45, 45);
+  cursor: pointer;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+form .btn .units {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: relative;
+  padding: 5px 0;
+}
+
+form .btn .units a {
+  margin: 2px 10px;
+  padding: 0px 5px;
+  position: relative;
+}
+
+form .btn .units a:hover,
+form .btn .units a:focus {
+  padding: 0px;
+  margin: 0px;
+  color: orangered;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+form .btn .units span {
+  line-height: 30px;
+  padding: 0px 5px;
+  color: brown;
+  margin: 0px 5px;
+}
+
+form a {
+  display: block;
+  padding: 3px;
+  font-size: 18px;
+}
+
+.or {
+  width: 100%;
+  display: flex;
+  padding: 5px 0;
+  background: white;
+}
+
+.success {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(81, 226, 68, 0.459);
+  color: green;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.success span {
+  float: right;
+  font-size: 25px;
+  color: darkgreen;
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.errors,
+.warning {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgb(214, 85, 85);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.errors span,
+.warning span {
+  float: right;
+  font-size: 25px;
+  color: rgb(136, 9, 9);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+.danger {
+  width: 50%;
+  margin: 3px auto;
+  padding: 8px 10px;
+  background: rgba(141, 19, 19, 0.726);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.danger span {
+  float: right;
+  font-size: 25px;
+  color: rgb(77, 7, 7);
+  line-height: 0.77em;
+  cursor: pointer;
+}
+
+footer {
+  width: 100%;
+  height: 15vh;
+  position: relative;
+  bottom: 0%;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+footer img {
+  width: 100%;
+  height: 20vh;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="shortcut icon"
+      href="../public/png/fast.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../public/css/admin.css" />
+    <title>Admin</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav">
+        <img src="../../public/png/ch.png" width="50px" height="50px;" />
+        <strong>Admin</strong>
+        <br />
+        <span>welcome to admin</span>
+      </div>
+      <div class="container">
+        <a href="index.html" class="homebtn">Go Home</a>
+        <button class="user">User</button>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="admin">
+        <ul id="sidebar">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="manage_orders.html">Manage Orders</a></li>
+          <li><a href="manage_reservs.html">Manage Reservations</a></li>
+          <li><a href="manage_items.html">Manage Items</a></li>
+          <li id="manage"><a href="add_item.html">Add Item</a></li>
+          <li><a href="admin_history.html">History Of Orders</a></li>
+        </ul>
+      </div>
+      <div class="container">
+        <h2>Add New Food Item</h2>
+        <form method="post" action="add_item" enctype="multipart/form-data">
+          <div class="form">
+            <div class="form-group">
+              <label for="name">Item Name</label><br /><input
+                type="text"
+                name="name"
+                id=""
+                placeholder="Name of Item"
+                value=""
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="img">Image</label><br /><input
+                type="file"
+                name="image"
+                id="img"
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label><br /><input
+                type="text"
+                name="price"
+                placeholder="Input Price of item"
+                id=""
+                value=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="price">Description</label><br />
+              <textarea
+                name="description"
+                placeholder="Give Brief Discription of Item "
+                value=""
+              >
+              </textarea>
+              <div class="button">
+                <input type="submit" name="submit" value="Add Now" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

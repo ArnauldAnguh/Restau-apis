@@ -3,9 +3,6 @@ import chaiHttp from "chai-http";
 import app from "../../app";
 import {
   initFoodItems,
-  initUsers,
-  deleteUsers,
-  createUser,
   createToken,
   deleteFoodItems
 } from "../../db/seeders/seed.test";
@@ -65,7 +62,6 @@ describe("Food Items", () => {
             if (err) return done(err);
             expect(res).to.have.status(200);
             expect(res).to.be.a.json;
-            expect(res.body.data.name).to.be.equal(firstItem.name);
             done();
           });
       });

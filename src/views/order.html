@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../public/css/order.css" />
+        <link rel="shortcut icon" href="../public/png/fast.png" type="image/x-icon">
+    <link rel="stylesheet" href="../public/css/responsive.css" />
+    <title> Order Now </title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <button class="cutlery">
+          <img src="../public/png/cut.png" width="30" height="30px" />
+        </button>
+        <a href="categories.html" class="homebtn">Check Categories</a>
+      </div>
+      <div id="navs">
+        <a href=""> Sandwiches <span> + </span> </a>
+      </div>
+      <div class="body">
+        <div id="nav">
+          <a href=""> Humburger <span> _ </span> </a>
+        </div>
+        <div class="sub">
+          <div id="nav1">
+            <h4 style="line-height: 2; width: 200px;padding-left: 10px;">Place Your Orders</h4>
+          </div>
+          <div class="jumbotron" style="height: 40%;background: rgba(253, 208, 104, 0.431);">
+            <form action=" order.html" method="POST" style="margin: 5px auto;width:50%; padding: 5px;text-align: center; ">
+               <input type="text" name="name" id="name" style="padding: 10px 20px;box-sizing: border-box;margin: 20px auto" placeholder="Item Name">
+              <input type="number" name="order" id="order" style="padding: 10px 20px;box-sizing: border-box;margin: 20px auto" placeholder="Item Quantity">
+              <input type="text" name="price"  style="padding: 10px 20px;box-sizing: border-box;margin: 20px auto"
+                placeholder="Enter unit price"><br>
+              <button type="submit" class="orderbtn" style="float: none; padding: 10px 20px;">ORDER NOW</button>
+            </form>
+          </div>
+          <hr>
+          <div class="jumbotron" style="position: relative;">
+          <div class="item">
+            <img src="../public/png/am.png" width="200px" height="110px" />
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam,
+              optio mollitia qui deleniti voluptate deserunt magnam
+              necessitatibus ipsa modi maxime est vel quas facere.
+            </p>
+          </div>
+          
+          <h3 class="name">
+            <button>X</button>
+            <a href="">
+              <span> $0.99 </span>
+              Rose's Burger</a>
+          </h3>
+          <h3 class="name">
+            <button>X</button>
+            <a href=""><span> $0.65 </span> Egg Burger</a>
+          </h3>
+        </div>
+      </div>
+</div>
+      <div id="navs">
+        <a href=""> Fried Chicken <span> + </span> </a>
+      </div>
+
+      <div id="navs">
+        <a href=""> Fruits & Vegetables <span> + </span> </a>
+      </div>
+    </div>
+    <div class="cart">
+      <div class="nav">
+        <img src="../public/png/uchat.jpg" width="50px" height="50px" />
+        <div class="head">Your Cart</div>
+        <button onclick="w_open()">2</button>
+      </div>
+      <div class="payment">
+        <h1>Payment Methods</h1>
+        <div id="pay" >
+          <div class="master">
+            <a href=""><span>PayPal</span> <img src="../public/png/visa.png"/></a>
+          </div>
+          <!-- <div class="master">
+            <a href="">
+              <span> Master Card </span>
+              <img src="../public/png/master.png"
+            /></a>
+          </div> -->
+
+          <div class="master">
+            <a href=""
+              ><span>MTN Mobile Money</span> <img src="../public/png/cad.png" id="momo"
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="sidenav" style="width:100%">
+        <div class="close">
+          <a
+            href="javascript:void(0)"
+            onclick="w_close()"
+            class="sidenav closebtn"
+            >&times;</a
+          >
+          Close Cart
+        </div>
+        <br />
+        <div class="jumbotron">
+          <h3 class="name">
+            <a href=""
+              >Blue Cheese
+              <span> $0.99 </span>
+            </a>
+            <button type="submit" name="remove">remove</button>
+          </h3>
+          <h3 class="name">
+            <a href=""
+              >Rose's Burger
+              <span> $0.99 </span>
+            </a>
+            <button type="submit" name="remove">remove</button>
+          </h3>
+          <h3 class="name">
+            <a href="">Egg Burger <span> $0.65 </span> </a>
+            <button type="submit" name="remove">remove</button>
+          </h3>
+        </div>
+      </div>
+      <div class="foot">
+        <p>
+          You Currently have
+          <abbr title="Number of items" style="color: yellow;padding: 6px;"
+            ><b>3</b></abbr
+          >
+          items in your cart.
+          <a href="" onclick="w_open()" style="color: orange"
+            ><strong>View Cart</strong></a
+          >
+        </p>
+        <span>PRICE: $32.03 </span>
+        <form action="order" method="POST">
+          <input type="submit" value="CHECKOUT" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function w_open() {
+        var x = document.getElementsByClassName("sidenav")[0];
+        x.style.display = "block";
+      }
+      function w_close() {
+        var x = document.getElementsByClassName("sidenav")[0];
+        x.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
