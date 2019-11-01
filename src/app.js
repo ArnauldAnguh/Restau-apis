@@ -4,6 +4,8 @@ import "core-js/shim";
 import "regenerator-runtime/runtime";
 import morgan from "morgan";
 import path from "path";
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 
@@ -12,7 +14,7 @@ import foodItemsRoutes from "./routes/foodItems";
 import orderRoutes from "./routes/orders";
 
 app.use(express.static(path.resolve("./public")));
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

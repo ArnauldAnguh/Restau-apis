@@ -71,7 +71,7 @@ export default class User {
     }
   }
   static async find({}) {
-    let queryString = "SELECT * FROM users";
+    let queryString = "SELECT * FROM users WHERE role = 'user' ";
     try {
       const { rows } = await db.query(queryString);
       return rows;
@@ -112,7 +112,7 @@ export default class User {
   static async findById(userId) {
     try {
       const { rows } = await db.query(
-        "SELECT * FROM users WHERE id=$1 LIMIT 1",
+        "SELECT * FROM users WHERE id=$1 AND role='user' LIMIT 1",
         [userId]
       );
       return rows[0];

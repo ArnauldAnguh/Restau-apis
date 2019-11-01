@@ -1,0 +1,692 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Chef~Gaustau's Restaurant API",
+        "description": "An online food delivery app for a restaurant",
+        "license": {
+            "name": "MIT",
+            "url": "https://github.com/ArnauldAnguh/Restau-apis/blob/develop/LICENSE"
+        }
+    },
+    "tags": [{
+        "name": "Restaurant",
+        "description": "an Application API for a Restaurant"
+    }],
+    "contact": {
+        "name": "API Support",
+        "email": "arnauldanguh@gmail.com"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "schemes": ["http"],
+    "consumes": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+        "application/json",
+        "application/xml",
+        "text/html"
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "required": {
+                    "id": "id",
+                    "name": "name",
+                    "email": "email",
+                    "password": "password"
+                }
+            },
+            "Fooditems": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "qunatity": {
+                        "type": "integer"
+                    },
+                    "price": {
+                        "type": "integer"
+                    }
+                },
+                "required": {
+                    "name": "name",
+                    "image": "image",
+                    "description": "description",
+                    "price": "price",
+                    "quantity": "quantity"
+                }
+            },
+            "Orders": {
+                "type": "object",
+                "properties": {
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "unit_price": {
+                        "type": "integer"
+                    },
+                    "fooditem": {
+                        "type": "string"
+                    }
+                },
+                "required": {
+                    "unit_price": "unit_price",
+                    "quantity": "quantity",
+                    "fooditem": "fooditem"
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Users": {
+            "type": "object",
+            "properties": {
+                "users": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "operationId": "getUsers",
+                "summary": "Get all customer users in the system",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "No users yet"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Represents a user",
+                "description": "Returns users a user in the system based on a given ID",
+                "operationId": "getUserById",
+                "parameters": [{
+                    "in": "path",
+                    "name": "userId",
+                    "description": "required user's ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
+                    },
+                    "400": {
+                        "description": "A valid user Id is required",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/users/auth/signup": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "operationId": "userId",
+                "summary": "Create a new user",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "should create a new user in the system",
+                    "schema": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Signup Successful"
+                    },
+                    "400": {
+                        "description": "A valid user Id is required"
+                    }
+                }
+            }
+        },
+
+        "/users/auth/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "operationId": "loginUserId",
+                "summary": "Log in a user",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "should authenticate and grant login access to a user in the system",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Login Successful"
+                    },
+                    "400": {
+                        "description": "Wrong user credentials"
+                    },
+                    "500": {
+                        "description": "internalServerError"
+                    }
+                }
+            }
+        },
+        "/users/{Id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "Id",
+                "summary": "Update a user",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "should update a user in the system given ID",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "username": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            },
+                            "passwordOld": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }, {
+                    "in": "path",
+                    "name": "userId",
+                    "description": "required user's ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }, {
+                    "in": "header",
+                    "name": "Authorization",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Login Successful"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "400": {
+                        "description": "Wrong user credentials"
+                    },
+                    "500": {
+                        "description": "internalServerError"
+                    }
+                }
+            }
+        },
+        "/users/{userid}": {
+            "delete": {
+                "tags": ["Users"],
+                "summary": "Delete a user",
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "Id",
+                "parameters": [{
+                    "in": "path",
+                    "name": "userid",
+                    "description": "should delete a user in the system given ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }, {
+                    "in": "header",
+                    "name": "Authorization",
+                    "required": true
+                }],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "400": {
+                        "description": "Invalid user id"
+                    }
+                }
+            }
+        },
+        "/foodItems": {
+            "get": {
+                "tags": [
+                    "Food Items"
+                ],
+                "operationId": "getAllItems",
+                "summary": "Get all food items in the system",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/Fooditems"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "No items yet"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/foodItems/menu": {
+            "post": {
+                "tags": [
+                    "Food Items"
+                ],
+                "operationId": "createItem",
+                "summary": "Create a food item in the system",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "should create a new food item in the system",
+                    "schema": {
+                        "$ref": "#/components/schemas/Fooditems"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/Fooditems"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "Error"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/foodItems/menu/{Id}": {
+            "get": {
+                "tags": [
+                    "Food Items"
+                ],
+                "operationId": "Id",
+                "summary": "Get food items by a given ID",
+                "parameters": [{
+                    "in": "path",
+                    "name": "Id",
+                    "description": "required food item ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "500": {
+                        "description": "internalServerError"
+                    }
+                }
+            }
+        },
+        "/foodItems/menu/{foodItemId}": {
+            "delete": {
+                "tags": ["Food Items"],
+                "summary": "Delete a food Item",
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "foodItemId",
+                "parameters": [{
+                    "in": "path",
+                    "name": "foodItemId",
+                    "description": "should delete a Food item in the system given ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }, {
+                    "in": "header",
+                    "name": "Authorization",
+                    "required": true
+                }],
+                "responses": {
+                    "204": {
+                        "description": "food Item deleted successfully"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "400": {
+                        "description": "Invalid Item id"
+                    }
+                }
+            }
+        },
+        "/foodItems/menu/{ItemId}": {
+            "put": {
+                "tags": [
+                    "Food Items"
+                ],
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "ItemId",
+                "summary": "Update a Food item",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "should update a food item in the system given ID",
+                    "schema": {
+                        "$ref": "#/components/schemas/Fooditems"
+                    }
+                }, {
+                    "in": "path",
+                    "name": "ItemId",
+                    "description": "required item ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }, {
+                    "in": "header",
+                    "name": "Authorization",
+                    "required": true
+                }],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/Fooditems"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "No Fooditems yet"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "operationId": "fetchAllOrders",
+                "summary": "Get all orders in the system",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/Orders"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "No Orders yet"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "operationId": "placeOrder",
+                "summary": "place a new Order",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "place a new Order in the system",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/components/schemas/Orders"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "schema": {
+                            "$ref": "#/components/schemas/Orders"
+                        }
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "500": {
+                        "description": "internalServerError"
+                    }
+                }
+            }
+        },
+        "/orders/{order_id}": {
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "operationId": "fetchOrderById",
+                "summary": "Fetch an Order in the system",
+                "parameters": [{
+                    "in": "path",
+                    "name": "order_id",
+                    "description": "should Fetch an Order in the system given an ID"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/components/schemas/Fooditems"
+                        }
+                    },
+                    "405": {
+                        "type": "string",
+                        "description": "Error: Not Found"
+                    },
+                    "500": {
+                        "type": "string",
+                        "description": "InternalServerError"
+                    }
+                }
+            }
+        },
+        "/orders/{update_id}": {
+            "put": {
+                "tags": ["Orders"],
+                "summary": "update an Order",
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "update_id",
+                "parameters": [{
+                        "in": "body",
+                        "name": "body",
+                        "description": "should update an Order in the system given ID",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Orders"
+                        }
+                    },
+                    {
+                        "in": "path",
+                        "name": "update_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "food Item deleted successfully"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "400": {
+                        "description": "Invalid Item id"
+                    }
+                }
+            }
+        },
+        "/orders/{delete_id}": {
+            "delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "security": {
+                    "bearerAuth": []
+                },
+                "operationId": "delete_id",
+                "summary": "Delete an Order",
+                "parameters": [{
+                    "in": "path",
+                    "name": "delete_id",
+                    "description": "required order ID",
+                    "required": true,
+                    "schema": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }, {
+                    "in": "header",
+                    "name": "Authorization",
+                    "required": true
+                }],
+                "responses": {
+                    "204": {
+                        "description": "Order deleted successfully"
+                    },
+                    "UnauthorizedError": {
+                        "description": "Access token is missing or invalid"
+                    },
+                    "400": {
+                        "description": "Invalid Order id"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -2,27 +2,33 @@ import fs from "fs";
 import FoodItem from "../models/foodItems";
 export default {
   async getAllItems(req, res) {
-    const allFoodItems = await FoodItem.find({});
-    return res.status(200).json({ data: allFoodItems, message: "success" });
+    try {
+      const allFoodItems = await FoodItem.find({});
+      return res.status(200).json({ data: allFoodItems, message: "success" });
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
+    }
   },
 
   async getItemById(req, res) {
     const foodItem_id = parseInt(req.params.foodItemId, 10);
-
-    if (!Number.isInteger(foodItem_id)) {
-      return res
-        .status(400)
-        .json({ foodItem_id: "Enter a valid food Item Id" });
+    try {
+      if (typeof foodItem_id !== "number") {
+        return res
+          .status(400)
+          .json({ foodItem_id: "Enter a valid food Item Id" });
+      }
+      const foodItem = await FoodItem.findById(foodItem_id);
+      if (!foodItem) {
+        return res.status(200).json({ Result: "Food item not found" });
+      }
+      return res.status(200).json({
+        data: foodItem,
+        message: `success in fetching item ${foodItem.id}`
+      });
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
     }
-
-    const foodItem = await FoodItem.findById(foodItem_id);
-    if (!foodItem) {
-      return res.status(200).json({ Result: "Food item not found" });
-    }
-    return res.status(200).json({
-      data: foodItem,
-      message: `success in fetching item ${foodItem.id}`
-    });
   },
 
   async createItem(req, res) {
@@ -90,16 +96,20 @@ export default {
   async search(req, res) {
     const item = req.params.searchKey;
     let query = req.query;
-    if (!item || item.length < 3) {
-      return res
-        .status(400)
-        .json({ msg: "You Must provide atleast 3 characters to search" });
-    }
-    const found = await FoodItem.search(item);
-    if (found === []) {
-      return res.status(403).json({ msg: "Searched Item Not Found!" });
-    } else {
-      return res.status(200).json({ results: "search results", item: found });
+    try {
+      if (!item || item.length < 3) {
+        return res
+          .status(400)
+          .json({ msg: "You Must provide atleast 3 characters to search" });
+      }
+      const found = await FoodItem.search(item);
+      if (found === []) {
+        return res.status(403).json({ msg: "Searched Item Not Found!" });
+      } else {
+        return res.status(200).json({ results: "search results", item: found });
+      }
+    } catch (e) {
+      return res.status(400).json({ error: e.message });
     }
   }
 };

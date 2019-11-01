@@ -16,7 +16,7 @@ router.post(
 router.post("/auth/signup", userValidation.create, users.signUp);
 router.post("/auth/login", userValidation.login, users.login);
 router.get("/:userId/orders", checkAuth.user, users.userOrderHistory);
-router.get("/:userId", checkAuth.user, users.getUserById);
+router.get("/:userId", users.getUserById);
 router.get("/admin/:userId", checkAuth.user, users.getUserById);
 router.post("/logout", checkAuth.user, users.signOut);
 router.put("/:userId", checkAuth.user, userValidation.update, users.updateUser);

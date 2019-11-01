@@ -46,8 +46,6 @@ router.get("/menu", checkAuth.user, FoodItems.getAllItems);
 router.post(
   "/menu",
   upload.single("image"),
-  checkAuth.user,
-  checkAuth.admin,
   foodItemValidation.create,
   FoodItems.createItem
 );

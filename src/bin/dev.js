@@ -1,3 +1,3 @@
 require("babel-core");
-require("babel-polyfill");
-require("../server");
+require("@babel/polyfill");
+require("../../dist/server");
