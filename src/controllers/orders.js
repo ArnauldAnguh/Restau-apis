@@ -69,13 +69,17 @@ export default {
     }
   },
   async deleteOrder(req, res) {
-    const order_id = parseInt(req.params.order_id, 10);
-    const foodItem = await Order.findById(order_id);
-    if (!foodItem) {
-      return res.status(400).json({ message: "Order not Found" });
-    } else {
-      await Order.delete(order_id);
-      return res.status(200).json({ message: "Order successfully deleted" });
+    try {
+      const order_id = parseInt(req.params.order_id, 10);
+      const foodItem = await Order.findById(order_id);
+      if (!foodItem) {
+        return res.status(400).json({ message: "Order not Found" });
+      } else {
+        await Order.delete(order_id);
+        return res.status(200).json({ message: "Order successfully deleted" });
+      }
+    } catch (err) {
+      return res.status(500).json(err);
     }
   }
 };

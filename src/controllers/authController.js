@@ -107,7 +107,7 @@ export default {
   async getUserById(req, res) {
     const user_id = parseInt(req.params.userId, 10);
     try {
-      if (Number.isNaN(user_id)) {
+      if (typeof user_id !== "number") {
         return res.status(400).json({ errors: "A valid user Id is required" });
       }
       const user = await User.findById(user_id);

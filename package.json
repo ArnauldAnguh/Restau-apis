@@ -9,9 +9,9 @@
     "dev": "babel-watch src/server.js",
     "clean": "rm -rf dist",
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
-    "prod": "npm run build && node ./dist/app.js",
+    "prod": "npm run build && node src/bin/prod",
     "lint": "eslint",
-    "coverage": "cross-env NODE_ENV=test babel-node node_modules/istanbul/lib/cli.js --include-all-sources cover node_modules/mocha/bin/_mocha -- -R dot --recursive ./src/tests/",
+    "coverage": "cross-env NODE_ENV=test babel-node node_modules/istanbul/lib/cli.js -- cover node_modules/mocha/bin/_mocha -- -R dot --recursive ./src/tests/",
     "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls",
     "migrate": "babel-node src/db/migrations/migrations.js",
     "migrate:test": "cross-env NODE_ENV=test npm run migrate",
@@ -45,6 +45,8 @@
     "morgan": "^1.9.1",
     "multer": "^1.4.2",
     "pg": "*",
+    "swagger-ui": "^3.24.0",
+    "swagger-ui-express": "^4.1.2",
     "validator": "^11.1.0"
   },
   "devDependencies": {
