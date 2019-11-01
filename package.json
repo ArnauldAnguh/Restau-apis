@@ -11,6 +11,7 @@
     "build": "npm run clean && mkdir dist && babel src -s -d dist",
     "prod": "npm run build && node src/bin/prod",
     "lint": "eslint",
+    "heroku-postbuild": "babel-node src/db/migrations/migrations.js",
     "coverage": "cross-env NODE_ENV=test babel-node node_modules/istanbul/lib/cli.js -- cover node_modules/mocha/bin/_mocha -- -R dot --recursive ./src/tests/",
     "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls",
     "migrate": "babel-node src/db/migrations/migrations.js",
