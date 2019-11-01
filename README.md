@@ -1,5 +1,5 @@
 # Restau-apis
-Restau-api is a food delivery service application for a restaurant where logged in customers can place orders for Food items, see history of orders made and can cancel an order at anytime(only if the order is still pending).
+Restau-api is a food delivery service application for a restaurant where logged in customers can place orders for Food items, see history of orders made and can cancel an order at anytime(only if the order is still pending).For more visit: https://dashboard.heroku.com/apps/restaurant-app-apis 
 
 [![Build Status](https://travis-ci.com/ArnauldAnguh/Restau-apis.svg?branch=develop)](https://travis-ci.com/ArnauldAnguh/Restau-apis)
 [![Coverage Status](https://coveralls.io/repos/github/ArnauldAnguh/Restau-apis/badge.svg?branch=develop)](https://coveralls.io/github/ArnauldAnguh/Restau-apis?branch=develop)
