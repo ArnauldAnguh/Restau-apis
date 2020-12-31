@@ -1,6 +1,6 @@
 .vscode
+.env
 dist
 node_modules
 .nyc_output
-coverage 
-.env
+coverage
