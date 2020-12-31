@@ -4,7 +4,6 @@
   "description": "a backend food delivery api",
   "main": "app.js",
   "engines": {
-    "npm": "6.7.0",
     "node": "^12.18.3"
   },
   "scripts": {
