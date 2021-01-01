@@ -5,8 +5,20 @@
         "node": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb-base",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
     ],
+    "parser": "@typescript-eslint/parser",
+
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -18,7 +30,6 @@
     "rules": {
         "comma-dangle":"off",
         "linebreak-style":"off",
-        "brace-style":"warn",
-        
+        "brace-style":"warn"
     }
 }
